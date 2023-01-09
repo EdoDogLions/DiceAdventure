@@ -1,9 +1,9 @@
-package dices;
+package exe;
 
 import fightStyle.*;
 import weapons.*;
 
-public class UseDice {
+public class Main {
 
 	public static void main (String[] args) {
 		

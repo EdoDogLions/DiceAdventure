@@ -4,12 +4,11 @@ import java.util.*;
 
 public class Dice implements DiceInterface {
 	/*
-	 * Obiettivo dell'applicazione: Simulare il lancio di un qualsiasi tipo di Dado per Dnd
-	 * Sfruttare stream/lambda per ottimizzarne la leggibilità
+	 * Simulare il lancio di un qualsiasi tipo di Dado generico
 	 * 
 	 */
 	
-	private static final int LOW = 1;
+	private static final int LOW = 1;	//Valore minimo della faccia
 	private int faces;
 	
 	/*
