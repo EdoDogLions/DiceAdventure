@@ -15,5 +15,23 @@ public class Mob implements Playable{
 		this.fightStyle = fs;
 		this.initiative = initiative;
 	}
+
+	@Override
+	public void fight() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void restoreHp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isAlive() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }
