@@ -1,8 +1,8 @@
 package mob;
 
-import fightStyle.FightStyle;
+import fight.FightStyle;
 
-public interface MobFacotry {
+public interface MobFactoryInterface {
 
 	public Mob createMob(Integer hp, Integer ac, FightStyle fs, Integer initiative);
 

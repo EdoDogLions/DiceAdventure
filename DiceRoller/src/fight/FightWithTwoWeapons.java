@@ -1,4 +1,4 @@
-package fightStyle;
+package fight;
 import weapons.*;
 
 public class FightWithTwoWeapons extends FightWithAWeapon implements FightStyle{
