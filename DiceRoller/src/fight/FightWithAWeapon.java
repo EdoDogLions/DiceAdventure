@@ -1,16 +1,16 @@
-package fightStyle;
+package fight;
 
-import weapons.Sword;
+import weapons.GenericWeapon;
 
 public class FightWithAWeapon implements FightStyle{
 
-	private Sword customWeapon;
+	private GenericWeapon customWeapon;
 	private Integer lastRollHit;
 	private Integer lastDmgHit;
 	private boolean isInAdvantage = false;
 	private boolean isInDisadvantage = false;
 
-	public FightWithAWeapon(Sword weapon) {
+	public FightWithAWeapon(GenericWeapon weapon) {
 		this.customWeapon = weapon;
 
 	}
@@ -58,9 +58,33 @@ public class FightWithAWeapon implements FightStyle{
 		isInAdvantage = false;
 		isInDisadvantage = false;
 	}
+	
+	public GenericWeapon getCustomWeapon() {
+		return customWeapon;
+	}
+
+	public void setCustomWeapon(GenericWeapon customWeapon) {
+		this.customWeapon = customWeapon;
+	}
+
+	public Integer getLastRollHit() {
+		return lastRollHit;
+	}
+
+	public Integer getLastDmgHit() {
+		return lastDmgHit;
+	}
+
+	public boolean isInAdvantage() {
+		return isInAdvantage;
+	}
+
+	public boolean isInDisadvantage() {
+		return isInDisadvantage;
+	}
 
 	public String toString() {
-		return  this.customWeapon.getClass().getName() + " rolled a " + this.lastRollHit + " dealing " + this.lastDmgHit;
+		return  this.customWeapon.getClass().getName();
 	}
 
 }

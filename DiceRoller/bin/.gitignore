@@ -1,5 +1,10 @@
 /dices/
+<<<<<<< HEAD
 /fightStyle/
+=======
+/exe/
+/fight/
+>>>>>>> 58e6b8374a92129c325547b3bd46947d339d2742
 /mob/
 /module-info.class
 /weapons/
