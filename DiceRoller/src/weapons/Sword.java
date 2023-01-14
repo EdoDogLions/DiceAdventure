@@ -2,10 +2,9 @@ package weapons;
 
 import dices.Dice;
 
-public class Sword implements Weapons {
+public class Sword implements WeaponInterface {
 	
 	private static final int DAMAGE = 6;
-	private static final int HIT = 20;
 	private static final int CRIT = 2; //Crit 2x DiceDmg
 	
 	private Dice diceDmg;
@@ -16,8 +15,7 @@ public class Sword implements Weapons {
 	
 	public Sword() {
 		
-		this.diceDmg = new Dice(DAMAGE);
-		this.diceHit = new Dice(HIT);
+		super(DAMAGE);
 	}
 
 	@Override

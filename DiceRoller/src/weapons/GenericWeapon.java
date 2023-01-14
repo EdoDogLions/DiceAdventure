@@ -2,7 +2,7 @@ package weapons;
 
 import dices.Dice;
 
-public class GenericWeapon implements Weapons {
+public abstract class GenericWeapon implements WeaponInterface {
 	
 	private static final int HIT = 20;
 	private static final int CRIT = 2; //Crit 2x DiceDmg

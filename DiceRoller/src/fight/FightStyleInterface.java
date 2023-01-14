@@ -1,6 +1,6 @@
 package fight;
 
-public interface FightStyle {
+public interface FightStyleInterface {
 	
 	public void useAWeapon(Integer armorClass);
 }

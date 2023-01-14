@@ -1,18 +1,18 @@
-package mob;
+package playable;
 
-import fight.FightStyle;
+import fight.FightStyleInterface;
 
-public class Mob implements Playable {
+public class Mob implements PlayableInterface {
 
 	private static final Integer DEATH = 0;
 	
 	
 	private Integer healthPoints;
 	private Integer armorClass;
-	private FightStyle fightStyle;
+	private FightStyleInterface fightStyle;
 	private Integer initiative;
 
-	public Mob(Integer hp, Integer ac, FightStyle fs, Integer initiative) {	//Iniziativa va tirata
+	public Mob(Integer hp, Integer ac, FightStyleInterface fs, Integer initiative) {	//Iniziativa va tirata
 		this.healthPoints = hp;
 		this.armorClass = ac;
 		this.fightStyle = fs;
@@ -31,7 +31,7 @@ public class Mob implements Playable {
 		return armorClass;
 	}
 
-	public FightStyle getFightStyle() {
+	public FightStyleInterface getFightStyle() {
 		return fightStyle;
 	}
 

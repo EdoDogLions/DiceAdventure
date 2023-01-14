@@ -2,7 +2,7 @@ package weapons;
 
 public interface WeaponsFactory {
 
-	Weapons createWeapon();
+	WeaponInterface createWeapon();
 
-	Weapons createWeapon(Integer value); //For generic Weapons Only
+	WeaponInterface createWeapon(Integer value); //For generic Weapons Only
 }

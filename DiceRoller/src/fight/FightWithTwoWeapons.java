@@ -1,11 +1,10 @@
 package fight;
 import weapons.*;
 
-public class FightWithTwoWeapons extends FightWithAWeapon implements FightStyle{
+public class FightWithTwoWeapons extends FightWithAWeapon implements FightStyleInterface{
 
-	public FightWithTwoWeapons(Sword weapon) {
+	public FightWithTwoWeapons(GenericWeapon weapon) {
 		super(weapon);
-		// TODO Auto-generated constructor stub
 	}
 
 }

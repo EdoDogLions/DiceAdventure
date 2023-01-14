@@ -1,7 +1,7 @@
 package fight;
 
 import dices.Dice;
-import mob.*;
+import playable.*;
 
 public class Combat {
 
@@ -12,7 +12,7 @@ public class Combat {
 	//Ha senso? O è meglio creare un Mob e aumentare sequenzialmente i suoi campi?
 	private Integer mobPf;
 	private Integer mobCa;
-	private FightStyle mobFs;
+	private FightStyleInterface mobFs;
 	private Integer mobInitiative = d20.roll();
 	
 	public Combat(Player player){

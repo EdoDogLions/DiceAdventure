@@ -2,7 +2,7 @@ package fight;
 
 import weapons.GenericWeapon;
 
-public class FightWithAWeapon implements FightStyle{
+public class FightWithAWeapon implements FightStyleInterface{
 
 	private GenericWeapon customWeapon;
 	private Integer lastRollHit;

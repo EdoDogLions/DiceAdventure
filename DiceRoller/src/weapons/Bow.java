@@ -2,10 +2,9 @@ package weapons;
 
 import dices.Dice;
 
-public class Bow implements Weapons {
+public class Bow extends GenericWeapon{
 	
 	private static final int DAMAGE = 8;
-	private static final int HIT = 20;
 	private static final int CRIT = 2; //Crit 2x DiceDmg
 	
 	private Dice diceDmg;
@@ -16,13 +15,12 @@ public class Bow implements Weapons {
 	
 	public Bow() {
 		
-		this.diceDmg = new Dice(DAMAGE);
-		this.diceHit = new Dice(HIT);
+		super(DAMAGE);
+		
 	}
 
 	@Override
 	public Integer rollDmg() {
-		// TODO Auto-generated method stub
 		this.lastDmg = this.diceDmg.roll();
 		return this.lastDmg;
 	}
