@@ -12,9 +12,17 @@ public class Main {
 		FightStyle fs = new FightWithAWeapon((GenericWeapon) spada);
 		Player pippo = new Player(100, 20, fs);
 		System.out.println(pippo);
-		//fs.useAWeapon(1);
+		fs.useAWeapon(20);
 		
 		System.out.println(fs);
+		System.out.println(pippo);
+		System.out.println(pippo);
+		System.out.println(pippo);
+		System.out.println(pippo);
+		pippo.getHealthPoints();
+		pippo.restoreHp();
+		System.out.println(pippo);
+		pippo.getHealthPoints();
 		
 		
 	}
