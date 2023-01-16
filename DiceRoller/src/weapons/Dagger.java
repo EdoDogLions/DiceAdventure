@@ -2,10 +2,9 @@ package weapons;
 
 import dices.Dice;
 
-public class Dagger implements Weapons {
+public class Dagger extends WeaponAbstract {
 	
 	private static final int DAMAGE = 4;
-	private static final int HIT = 20;
 	private static final int CRIT = 2; //Crit 2x DiceDmg
 	
 	private Dice diceDmg;
@@ -16,8 +15,7 @@ public class Dagger implements Weapons {
 	
 	public Dagger() {
 		
-		this.diceDmg = new Dice(DAMAGE);
-		this.diceHit = new Dice(HIT);
+		super(DAMAGE);
 	}
 
 	@Override
@@ -60,5 +58,15 @@ public class Dagger implements Weapons {
 	
 	public Integer getLastDmg() {
 		return this.lastDmg;
+	}
+public Integer getMaxDmg() {
+		
+		return DAMAGE;
+	}
+	
+	public String toString() {
+		return "Weapon Name: " + this.getClass().getName() +
+				"\nWeapon Damage: " + this.getMaxDmg();
+		
 	}
 }

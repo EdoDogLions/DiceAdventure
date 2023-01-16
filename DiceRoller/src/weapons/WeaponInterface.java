@@ -1,6 +1,6 @@
 package weapons;
 
-public interface Weapons {
+public interface WeaponInterface {
 
 	public Integer rollDmg();
 	
