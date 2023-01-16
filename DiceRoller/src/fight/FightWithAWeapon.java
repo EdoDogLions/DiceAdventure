@@ -1,16 +1,16 @@
 package fight;
 
-import weapons.GenericWeapon;
+import weapons.WeaponAbstract;
 
 public class FightWithAWeapon implements FightStyleInterface{
 
-	private GenericWeapon customWeapon;
+	private WeaponAbstract customWeapon;
 	private Integer lastRollHit;
 	private Integer lastDmgHit;
 	private boolean isInAdvantage = false;
 	private boolean isInDisadvantage = false;
 
-	public FightWithAWeapon(GenericWeapon weapon) {
+	public FightWithAWeapon(WeaponAbstract weapon) {
 		this.customWeapon = weapon;
 
 	}
@@ -59,11 +59,11 @@ public class FightWithAWeapon implements FightStyleInterface{
 		isInDisadvantage = false;
 	}
 	
-	public GenericWeapon getCustomWeapon() {
+	public WeaponAbstract getCustomWeapon() {
 		return customWeapon;
 	}
 
-	public void setCustomWeapon(GenericWeapon customWeapon) {
+	public void setCustomWeapon(WeaponAbstract customWeapon) {
 		this.customWeapon = customWeapon;
 	}
 

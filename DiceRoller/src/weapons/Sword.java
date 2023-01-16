@@ -2,7 +2,7 @@ package weapons;
 
 import dices.Dice;
 
-public class Sword implements WeaponInterface {
+public class Sword extends WeaponAbstract {
 	
 	private static final int DAMAGE = 6;
 	private static final int CRIT = 2; //Crit 2x DiceDmg
@@ -58,5 +58,16 @@ public class Sword implements WeaponInterface {
 	
 	public Integer getLastDmg() {
 		return this.lastDmg;
+	}
+	
+	public Integer getMaxDmg() {
+		
+		return DAMAGE;
+	}
+	
+	public String toString() {
+		return "Weapon Name: " + this.getClass().getName() +
+				"\nWeapon Damage: " + this.getMaxDmg();
+		
 	}
 }

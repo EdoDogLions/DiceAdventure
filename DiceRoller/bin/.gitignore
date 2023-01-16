@@ -1,6 +1,5 @@
-/dices/
+/playable/
+/utilities/
+/weapons/
 /exe/
 /fight/
-/mob/
-/module-info.class
-/weapons/

@@ -2,7 +2,7 @@ package weapons;
 
 import dices.Dice;
 
-public class Dagger extends GenericWeapon {
+public class Dagger extends WeaponAbstract {
 	
 	private static final int DAMAGE = 4;
 	private static final int CRIT = 2; //Crit 2x DiceDmg
@@ -58,5 +58,15 @@ public class Dagger extends GenericWeapon {
 	
 	public Integer getLastDmg() {
 		return this.lastDmg;
+	}
+public Integer getMaxDmg() {
+		
+		return DAMAGE;
+	}
+	
+	public String toString() {
+		return "Weapon Name: " + this.getClass().getName() +
+				"\nWeapon Damage: " + this.getMaxDmg();
+		
 	}
 }
