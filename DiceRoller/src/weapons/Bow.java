@@ -6,6 +6,7 @@ public class Bow extends WeaponAbstract{
 	
 	private static final int DAMAGE = 8;
 	private static final int CRIT = 2; //Crit 2x DiceDmg
+	private static final Integer HIT = 20;
 	
 	private Dice diceDmg;
 	private Dice diceHit;
@@ -15,7 +16,8 @@ public class Bow extends WeaponAbstract{
 	
 	public Bow() {
 		
-		super(DAMAGE);
+		this.diceDmg = new Dice(DAMAGE);
+		this.diceHit = new Dice(HIT);
 		
 	}
 

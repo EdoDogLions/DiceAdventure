@@ -8,4 +8,8 @@ public interface WeaponInterface {
 	
 	public Integer rollCrit();
 	
+	public Integer rollDsv();
+
+	public Integer rollAdv();
+	
 }

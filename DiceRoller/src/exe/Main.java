@@ -9,11 +9,9 @@ public class Main {
 
 	public static void main (String[] args) {
 		
-		
-		WeaponFactoryInterface wf = new WeaponFactory();
-		WeaponInterface arma2 = wf.createWeapon();
-		System.out.println(arma2);
-
+		FightWithAWeapon fas = new FightWithAWeapon();
+		fas.useAWeapon(12);
+		System.out.println(fas.getCustomWeapon());
 	}
 		
 		

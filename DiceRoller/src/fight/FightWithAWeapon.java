@@ -1,17 +1,23 @@
 package fight;
 
-import weapons.WeaponAbstract;
+import weapons.WeaponFactory;
+import weapons.WeaponInterface;
 
-public class FightWithAWeapon implements FightStyleInterface{
+public class FightWithAWeapon implements FightStyleInterface {
 
-	private WeaponAbstract customWeapon;
+	private WeaponInterface customWeapon;
 	private Integer lastRollHit;
 	private Integer lastDmgHit;
 	private boolean isInAdvantage = false;
 	private boolean isInDisadvantage = false;
 
-	public FightWithAWeapon(WeaponAbstract weapon) {
-		this.customWeapon = weapon;
+	/*
+	 * Quando si crea uno stile di combattimento, di default faccio in modo che
+	 * l'arma generata sia casuale
+	 */
+	public FightWithAWeapon() {
+		WeaponFactory weaponGen = new WeaponFactory();
+		this.customWeapon = weaponGen.createWeapon();
 
 	}
 
@@ -58,12 +64,15 @@ public class FightWithAWeapon implements FightStyleInterface{
 		isInAdvantage = false;
 		isInDisadvantage = false;
 	}
-	
-	public WeaponAbstract getCustomWeapon() {
+
+	public WeaponInterface getCustomWeapon() {
 		return customWeapon;
 	}
 
-	public void setCustomWeapon(WeaponAbstract customWeapon) {
+	/*
+	 * Qualora volessi impostare l'arma posso farlo con questo set
+	 */
+	public void setCustomWeapon(WeaponInterface customWeapon) {
 		this.customWeapon = customWeapon;
 	}
 
@@ -84,7 +93,7 @@ public class FightWithAWeapon implements FightStyleInterface{
 	}
 
 	public String toString() {
-		return  this.customWeapon.getClass().getName();
+		return this.customWeapon.getClass().getName();
 	}
 
 }

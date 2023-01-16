@@ -6,6 +6,7 @@ public class Dagger extends WeaponAbstract {
 	
 	private static final int DAMAGE = 4;
 	private static final int CRIT = 2; //Crit 2x DiceDmg
+	private static final Integer HIT = 20;
 	
 	private Dice diceDmg;
 	private Dice diceHit;
@@ -15,7 +16,8 @@ public class Dagger extends WeaponAbstract {
 	
 	public Dagger() {
 		
-		super(DAMAGE);
+		this.diceDmg = new Dice(DAMAGE);
+		this.diceHit = new Dice(HIT);
 	}
 
 	@Override

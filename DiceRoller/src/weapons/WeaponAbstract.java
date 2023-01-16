@@ -7,19 +7,23 @@ public abstract class WeaponAbstract implements WeaponInterface {
 	private static final int HIT = 20;
 	private static final int CRIT = 2; //Crit 2x DiceDmg
 	
-	private Dice diceDmg;
-	private Dice diceHit;
+	/*
+	 * RAGIONA SU COME SVILUPPARE LA CLASSE ASTRATTA; SE SOLO COME CLASSE GENERICA PER TRACCIA DELLE ARMI
+	 */
+//	private Dice diceDmg;
+//	private Dice diceHit;
 //	private int lastDmg;
 //	private int lastHit;
-	
+//	
 	/*
 	 * Controlla se GenericWeapon come classe astratta può esistere senza nessun metodo
 	 */
-	public WeaponAbstract(Integer damage) {
-		
-		this.diceDmg = new Dice(damage);
-		this.diceHit = new Dice(HIT);
-	}
+//	public WeaponAbstract(Integer damage) {
+//		
+//		this.diceDmg = new Dice(damage);
+//		this.diceHit = new Dice(HIT);
+//		
+//	}
 
 //	@Override
 //	public Integer rollDmg() {
