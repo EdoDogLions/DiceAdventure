@@ -1,6 +1,5 @@
 package fight;
 
-import dices.Dice;
 import playable.*;
 
 public class Combat {
@@ -16,7 +15,7 @@ public class Combat {
 	private static final Integer START_CA = 10;
 	private static final Integer START_LIFE = 10;
 	private static final Integer LAST_MOB = 10; // Quanti Mob fronteggiare
-	private static final Integer INCREASE_HP = 2;
+	private static final Double INCREASE_HP = 1.3;
 	private static final Integer INCREASE_CA = 1;
 
 	/*
@@ -143,7 +142,7 @@ public class Combat {
 	}
 
 	public void setMobPf() {
-		this.mobPf = (mobPf * INCREASE_HP);
+		this.mobPf = (int) (mobPf * INCREASE_HP);
 	}
 
 	public void setMobCa() {

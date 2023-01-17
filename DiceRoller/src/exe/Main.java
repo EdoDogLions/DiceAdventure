@@ -14,9 +14,6 @@ public class Main {
 		 * GAME INTRODUCTION
 		 */
 		System.out.println("Welcome to DiceAdventure");
-		System.out.println("Welcome to DiceAdventure");
-		System.out.println("Welcome to DiceAdventure");
-		System.out.println("Welcome to DiceAdventure");
 		
 		FightWithAWeapon fas = new FightWithAWeapon();
 		Player player = new Player(100, 15, fas);
