@@ -1,22 +1,24 @@
 package playable;
 
+import dices.Dice;
 import fight.FightStyleInterface;
 
 public class Mob implements PlayableInterface {
 
 	private static final Integer DEATH = 0;
-	
-	
+
+	private Dice d20 = new Dice(20);
+
 	private Integer healthPoints;
 	private Integer armorClass;
 	private FightStyleInterface fightStyle;
 	private Integer initiative;
 
-	public Mob(Integer hp, Integer ac, FightStyleInterface fs, Integer initiative) {	//Iniziativa va tirata
+	public Mob(Integer hp, Integer ac, FightStyleInterface fs) { // Iniziativa va tirata
 		this.healthPoints = hp;
 		this.armorClass = ac;
 		this.fightStyle = fs;
-		this.initiative = initiative;
+		this.initiative = d20.roll();
 	}
 
 	public Integer getHealthPoints() {
@@ -25,6 +27,14 @@ public class Mob implements PlayableInterface {
 
 	public void setHealthPoints(Integer healthPoints) {
 		this.healthPoints = healthPoints;
+	}
+
+	public void setDamage(Integer damage) {
+		this.healthPoints -= damage;
+	}
+
+	public void setArmorClass(Integer armorClass) {
+		this.armorClass = armorClass;
 	}
 
 	public Integer getArmorClass() {
@@ -48,6 +58,12 @@ public class Mob implements PlayableInterface {
 		} else {
 			return false;
 		}
+	}
+
+	public String toString() {
+
+		return this.getClass().getName().toUpperCase() + " STATS:" + "\nHP: " + this.healthPoints + "\nCA: "
+				+ this.armorClass + "\nFIGHT STYLE: " + this.fightStyle + "\nINITIATIVE: " + this.initiative + "\n";
 	}
 
 }

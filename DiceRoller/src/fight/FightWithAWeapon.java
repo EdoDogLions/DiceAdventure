@@ -5,6 +5,8 @@ import weapons.WeaponInterface;
 
 public class FightWithAWeapon implements FightStyleInterface {
 
+	private static final Integer MISS = 0;
+	
 	private WeaponInterface customWeapon;
 	private Integer lastRollHit;
 	private Integer lastDmgHit;
@@ -15,7 +17,9 @@ public class FightWithAWeapon implements FightStyleInterface {
 	 * Quando si crea uno stile di combattimento, di default faccio in modo che
 	 * l'arma generata sia casuale
 	 */
+	
 	public FightWithAWeapon() {
+		
 		WeaponFactory weaponGen = new WeaponFactory();
 		this.customWeapon = weaponGen.createWeapon();
 
@@ -24,28 +28,35 @@ public class FightWithAWeapon implements FightStyleInterface {
 	private void hitWithAWeapon() {
 
 		if (isInAdvantage) {
-			System.out.println("Rolling with Advantage");
+			System.out.println(customWeapon.getClass().getName() + " is rolling with Advantage");
 			this.lastRollHit = customWeapon.rollAdv();
 		} else if (isInDisadvantage) {
-			System.out.println("Rolling with Disadvantage");
+			System.out.println(customWeapon.getClass().getName() + " is rolling with Disadvantage");
 			this.lastRollHit = customWeapon.rollDsv();
 		} else {
+			System.out.println(customWeapon.getClass().getName() + " is rolling without any modifiers");
 			this.lastRollHit = customWeapon.rollHit();
 		}
 	}
 
+	/*
+	 * Rendiamo più chiara la scrittura
+	 * Player e Mob usano questo metodo per fronteggiarsi
+	 */
+	
 	public void useAWeapon(Integer armorClass) {
 
 		this.hitWithAWeapon();
 
 		if (this.lastRollHit == 20) {
-			System.out.println("You critted!");
 			this.lastDmgHit = customWeapon.rollCrit();
+			System.out.println(customWeapon.getClass().getName() + " Rolled a Crit and dealed : " + this.lastDmgHit + " damage");
 		} else if (this.lastRollHit >= armorClass) {
-			System.out.println("You Hitted the enemy!");
 			this.lastDmgHit = this.customWeapon.rollDmg();
+			System.out.println(customWeapon.getClass().getName() + " Hitted the target and dealed : " + this.lastDmgHit + " damage");
 		} else {
-			System.out.println("You Missed the target");
+			this.lastDmgHit = MISS;
+			System.out.println(customWeapon.getClass().getName() + " Missed the target and dealed : " + this.lastDmgHit + " damage");
 		}
 	}
 

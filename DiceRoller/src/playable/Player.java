@@ -14,7 +14,7 @@ public class Player implements PlayableInterface {
 	private Integer actualHp;
 	private final Integer armorClass;
 	private final FightStyleInterface fightStyle;
-	private final Integer initiative;
+	private Integer initiative;
 
 	public Player(Integer hp, Integer ac, FightStyleInterface fs) {
 		this.maxHp = hp;
@@ -54,6 +54,10 @@ public class Player implements PlayableInterface {
 	public void setHealthPoints(Integer healthPoints) {
 		this.actualHp = healthPoints;
 	}
+	
+	public void setDamage(Integer damage) {
+		this.actualHp -= damage;
+	}
 
 	public Integer getArmorClass() {
 		return armorClass;
@@ -67,10 +71,14 @@ public class Player implements PlayableInterface {
 		return initiative;
 	}
 
+	public void setInitiative() {
+		
+		this.initiative = d20.roll();
+	}
 	public String toString() {
 
-		return this.getClass().getName() + " has:\n" + "\nHP: " + this.actualHp + "\nCA: " + this.armorClass
-				+ "\nFIGHT STYLE: " + this.fightStyle + "\nINITIATIVE: " + this.initiative;
+		return this.getClass().getName().toUpperCase() + " STATS:" + "\nHP: " + this.actualHp + "\nCA: " + this.armorClass
+				+ "\nFIGHT STYLE: " + this.fightStyle + "\nINITIATIVE: " + this.initiative + "\n";
 	}
 
 }

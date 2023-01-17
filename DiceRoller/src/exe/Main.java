@@ -7,11 +7,23 @@ import weapons.*;
 
 public class Main {
 
+
 	public static void main (String[] args) {
 		
+		/*
+		 * GAME INTRODUCTION
+		 */
+		System.out.println("Welcome to DiceAdventure");
+		System.out.println("Welcome to DiceAdventure");
+		System.out.println("Welcome to DiceAdventure");
+		System.out.println("Welcome to DiceAdventure");
+		
 		FightWithAWeapon fas = new FightWithAWeapon();
-		fas.useAWeapon(12);
-		System.out.println(fas.getCustomWeapon());
+		Player player = new Player(100, 15, fas);
+		Combat combat = new Combat(player);
+		
+		combat.fight();
+		
 	}
 		
 		
