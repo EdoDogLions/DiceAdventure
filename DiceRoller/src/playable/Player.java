@@ -1,31 +1,39 @@
 package playable;
 
 import dices.Dice;
-import fight.FightStyleInterface;
+import fightStyles.FightStyleFactory;
+import fightStyles.FightStyleInterface;
 
 public class Player implements PlayableInterface {
 
 	private static final Double RESTORE = 0.5;
 	private static final Integer DEATH = 0;
+	private static final Integer BASE_CA = 10;
 
 	private Dice d20 = new Dice(20);
+	private Dice d8 = new Dice(8);
+
+	private final FightStyleFactory fsFactory = new FightStyleFactory();
 
 	private Integer maxHp; // Punti ferita massimi
 	private Integer actualHp;
 	private final Integer armorClass;
 	private final FightStyleInterface fightStyle;
 	private Integer initiative;
+	private String playerName;
 
-	public Player(Integer hp, Integer ac, FightStyleInterface fs) {
+	public Player(Integer hp, String playerName) {
 		this.maxHp = hp;
 		this.actualHp = hp;
-		this.armorClass = ac;
-		this.fightStyle = fs;
+		this.armorClass = BASE_CA + d8.roll();
+		this.fightStyle = fsFactory.createFightStyle();
 		this.initiative = d20.roll();
+		this.playerName = playerName;
 	}
 
 	/*
-	 * Ripristino Hp attuali + x% degli Hp massimi determinato dalla variabile RESTORE
+	 * Ripristino Hp attuali + x% degli Hp massimi determinato dalla variabile
+	 * RESTORE
 	 */
 	public void restoreHp() {
 
@@ -54,7 +62,7 @@ public class Player implements PlayableInterface {
 	public void setHealthPoints(Integer healthPoints) {
 		this.actualHp = healthPoints;
 	}
-	
+
 	public void setDamage(Integer damage) {
 		this.actualHp -= damage;
 	}
@@ -72,13 +80,18 @@ public class Player implements PlayableInterface {
 	}
 
 	public void setInitiative() {
-		
 		this.initiative = d20.roll();
 	}
+
+	public String getPlayerName() {
+		return this.playerName;
+	}
+
 	public String toString() {
 
-		return this.getClass().getName().toUpperCase() + " STATS:" + "\nHP: " + this.actualHp + "\nCA: " + this.armorClass
-				+ "\nFIGHT STYLE: " + this.fightStyle + "\nINITIATIVE: " + this.initiative + "\n";
+		return this.getClass().getName().toUpperCase() + " STATS:" + "\nNAME: " + this.playerName
+				+ "\nHP: " + this.actualHp + "\nCA: "
+				+ this.armorClass + "\nFIGHT STYLE: " + this.fightStyle + "\nINITIATIVE: " + this.initiative + "\n";
 	}
 
 }

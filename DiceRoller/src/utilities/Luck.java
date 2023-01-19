@@ -1,4 +1,4 @@
-package fight;
+package utilities;
 
 public enum Luck {
 

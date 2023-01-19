@@ -1,4 +1,4 @@
-package fight;
+package fightStyles;
 
 import java.util.ArrayList;
 
@@ -111,7 +111,7 @@ public class FightWithAWeapon implements FightStyleInterface {
 	}
 
 	public String toString() {
-		return this.customWeapon.get(LEFT).getClass().getName();
+		return this.customWeapon.get(LEFT).getWeaponName();
 	}
 
 }

@@ -1,4 +1,4 @@
-package fight;
+package fightStyles;
 
 public interface FightStyleInterface {
 

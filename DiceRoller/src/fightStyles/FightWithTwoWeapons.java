@@ -1,6 +1,8 @@
-package fight;
+package fightStyles;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.function.Predicate;
 
 import weapons.*;
 
@@ -18,6 +20,7 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 	private Integer lastDmgHit;
 	private boolean isInAdvantage = false;
 	private boolean isInDisadvantage = false;
+	private String fightStyleName;
 
 	/*
 	 * Ho una lista di armi, all'inidice 0 la prima, all'indice 1 la seconda
@@ -28,13 +31,14 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 		this.customWeapon = new ArrayList<>();
 
 		for (Integer i = 0; i < NUM_WEAPONS; i++) {
-
 			this.customWeapon.add(weaponGen.createWeapon());
-
 		}
 
+		this.bowException();
+		this.formatName();
+
 	}
-	
+
 	private void hitWithAWeapon(Integer numberOfWeapon) {
 
 		if (isInAdvantage) {
@@ -44,7 +48,8 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 			System.out.println(customWeapon.get(numberOfWeapon).getClass().getName() + " is rolling with Disadvantage");
 			this.lastRollHit = customWeapon.get(numberOfWeapon).rollDsv();
 		} else {
-			System.out.println(customWeapon.get(numberOfWeapon).getClass().getName() + " is rolling without any modifiers");
+			System.out.println(
+					customWeapon.get(numberOfWeapon).getClass().getName() + " is rolling without any modifiers");
 			this.lastRollHit = customWeapon.get(numberOfWeapon).rollHit();
 		}
 	}
@@ -53,7 +58,7 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 
 		Integer totalDamage = INITIAL_DAMAGE;
 		this.lastDmgHit = INITIAL_DAMAGE;
-		
+
 		for (Integer actualWeapon = 0; actualWeapon < NUM_WEAPONS; actualWeapon++) {
 
 			this.hitWithAWeapon(actualWeapon);
@@ -71,8 +76,40 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 				System.out.println(customWeapon.get(actualWeapon).getClass().getName()
 						+ " Missed the target and dealed : " + totalDamage + " damage");
 			}
-			
+
 			this.lastDmgHit += totalDamage;
+		}
+	}
+
+	/*
+	 * Il caso del Bow è particolare poichè non si possono avere due archi come armi
+	 * in simultanea
+	 */
+
+	private void bowException() {
+
+		WeaponInterface bowException = new Bow();
+		WeaponFactory weaponGen = new WeaponFactory();
+
+		while (customWeapon.get(LEFT).getClass() == customWeapon.get(RIGHT).getClass()
+				&& customWeapon.get(LEFT).getClass() == bowException.getClass()) {
+
+			customWeapon.set(LEFT, weaponGen.createWeapon());
+		}
+
+	}
+	
+
+	private void formatName() {
+
+		if (this.customWeapon.get(LEFT).getClass() == this.customWeapon.get(RIGHT).getClass()) {
+
+			this.fightStyleName = "Double " + customWeapon.get(LEFT).getWeaponName();
+
+		} else {
+
+			this.fightStyleName = customWeapon.get(LEFT).getWeaponName() + " & "
+					+ customWeapon.get(RIGHT).getWeaponName();
 		}
 	}
 
@@ -101,7 +138,7 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 	 */
 	public void setCustomWeapon(WeaponInterface customWeapon) {
 		this.customWeapon.set(LEFT, customWeapon);
-		
+
 	}
 
 	public Integer getLastRollHit() {
@@ -121,10 +158,8 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 	}
 
 	public String toString() {
-		
-		
-		return this.customWeapon.get(LEFT).getClass().getName() +
-				" " + (this.customWeapon.get(RIGHT).getClass().getName());
+
+		return this.fightStyleName;
 	}
-	
+
 }

@@ -1,24 +1,30 @@
 package playable;
 
 import dices.Dice;
-import fight.FightStyleInterface;
+import fightStyles.FightStyleFactory;
+import fightStyles.FightStyleInterface;
+import utilities.MobNameGenerator;
 
 public class Mob implements PlayableInterface {
 
 	private static final Integer DEATH = 0;
 
 	private Dice d20 = new Dice(20);
+	private final FightStyleFactory fsFactory= new FightStyleFactory();
+	private MobNameGenerator mobNameGen = new MobNameGenerator();
 
 	private Integer healthPoints;
 	private Integer armorClass;
 	private FightStyleInterface fightStyle;
 	private Integer initiative;
+	private String mobName;
 
-	public Mob(Integer hp, Integer ac, FightStyleInterface fs) { // Iniziativa va tirata
+	public Mob(Integer hp, Integer ac) { // Iniziativa va tirata
 		this.healthPoints = hp;
 		this.armorClass = ac;
-		this.fightStyle = fs;
+		this.fightStyle = fsFactory.createFightStyle();
 		this.initiative = d20.roll();
+		this.mobName = mobNameGen.getName();
 	}
 
 	public Integer getHealthPoints() {
@@ -49,6 +55,9 @@ public class Mob implements PlayableInterface {
 		return initiative;
 	}
 
+	public String getMobName() {
+		return this.mobName;
+	}
 	public boolean isAlive() {
 
 		if (this.healthPoints > DEATH) {
@@ -62,7 +71,8 @@ public class Mob implements PlayableInterface {
 
 	public String toString() {
 
-		return this.getClass().getName().toUpperCase() + " STATS:" + "\nHP: " + this.healthPoints + "\nCA: "
+		return this.getClass().getName().toUpperCase() + " STATS:" + "\nTYPE: " + this.mobName
+				+ "\nHP: " + this.healthPoints + "\nCA: "
 				+ this.armorClass + "\nFIGHT STYLE: " + this.fightStyle + "\nINITIATIVE: " + this.initiative + "\n";
 	}
 

@@ -1,10 +1,6 @@
 package exe;
 
-import dices.Dice;
-import fight.*;
 import playable.*;
-import utilities.RandomWeaponGenerator;
-import weapons.*;
 
 public class Main {
 
@@ -29,10 +25,7 @@ public class Main {
 		 */
 		System.out.println("Welcome to DiceAdventure");
 		
-		Dice randomCA = new Dice(8);
-		FightWithTwoWeapons ftw = new FightWithTwoWeapons();
-		System.out.println(ftw);
-		Player player = new Player(100, 10 + randomCA.roll(), ftw);
+		Player player = new Player(100, "Pippo Baudo");
 		Combat combat = new Combat(player);
 		
 		combat.fight();

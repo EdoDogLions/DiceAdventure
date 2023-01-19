@@ -1,6 +1,6 @@
 package playable;
 
-import fight.FightStyleInterface;
+import fightStyles.FightStyleInterface;
 
 public interface MobFactoryInterface {
 

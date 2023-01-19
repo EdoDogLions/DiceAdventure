@@ -6,13 +6,14 @@ import weapons.*;
 
 public class RandomWeaponGenerator {
 
-	private static final Integer WEAPONS = 4;
+	private static final Integer WEAPONS = 5;
 	private static final Integer ARRAY_START = 1;
 
-	private Sword sword;
-	private Bow bow;
-	private Dagger dagger;
-	private Broadsword broadsword;
+	private WeaponInterface sword;
+	private WeaponInterface bow;
+	private WeaponInterface dagger;
+	private WeaponInterface broadsword;
+	private WeaponInterface hammer;
 	private Dice random = new Dice(WEAPONS);
 	private ArrayList<WeaponInterface> weaponArray;
 
@@ -22,7 +23,9 @@ public class RandomWeaponGenerator {
 		this.bow = new Bow();
 		this.dagger = new Dagger();
 		this.broadsword = new Broadsword();
+		this.hammer = new Hammer();
 		this.weaponArray = new ArrayList<WeaponInterface>();
+		
 
 
 	}
@@ -31,11 +34,14 @@ public class RandomWeaponGenerator {
 
 		/*
 		 * Aggiungo le 4 armi all'array
+		 * Esiste un modo migliore?
 		 */
+		
 		weaponArray.add(this.sword);
 		weaponArray.add(this.bow);
 		weaponArray.add(this.dagger);
 		weaponArray.add(this.broadsword);
+		weaponArray.add(this.hammer);
 		
 		return this.weaponArray.get(random.roll() - ARRAY_START);
 	}

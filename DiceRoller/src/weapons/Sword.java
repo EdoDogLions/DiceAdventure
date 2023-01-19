@@ -4,25 +4,26 @@ import dices.Dice;
 
 public class Sword extends WeaponAbstract {
 	
-	private static final int DAMAGE = 6;
-	private static final int CRIT = 2; //Crit 2x DiceDmg
+	private static final Integer DAMAGE = 6;
+	private static final Integer CRIT = 2; //Crit 2x DiceDmg
 	private static final Integer HIT = 20;
 	
 	private Dice diceDmg;
 	private Dice diceHit;
-	private int lastDmg;
-	private int lastHit;
+	private Integer lastDmg;
+	private Integer lastHit;
+	private String weaponName;
 	
 	
 	public Sword() {
 		
 		this.diceDmg = new Dice(DAMAGE);
 		this.diceHit = new Dice(HIT);
+		this.weaponName = "Sword";
 	}
 
 	@Override
 	public Integer rollDmg() {
-		// TODO Auto-generated method stub
 		this.lastDmg = this.diceDmg.roll();
 		return this.lastDmg;
 	}
@@ -68,8 +69,13 @@ public class Sword extends WeaponAbstract {
 	}
 	
 	public String toString() {
-		return "Weapon Name: " + this.getClass().getName() +
+		return "Weapon Name: " + this.weaponName +
 				"\nWeapon Damage: " + this.getMaxDmg();
 		
+	}
+
+	@Override
+	public String getWeaponName() {
+		return this.weaponName;
 	}
 }

@@ -1,7 +1,10 @@
-package fight;
+package exe;
 
 import dices.Dice;
+import fightStyles.FightStyleInterface;
+import fightStyles.FightWithAWeapon;
 import playable.*;
+import utilities.Luck;
 
 public class Combat {
 
@@ -17,7 +20,7 @@ public class Combat {
 	private static final Integer START_CA = 10;
 	private static final Integer START_LIFE = 10;
 	private static final Integer LAST_MOB = 11; // Quanti Mob fronteggiare
-	private static final Double INCREASE_HP = 1.2;
+	private static final Double INCREASE_HP = 1.3;
 	private static final Integer INCREASE_CA = 1;
 	private static final Integer MAX_CA = 20;
 
@@ -84,7 +87,7 @@ public class Combat {
 					 * Inizia il player, colpisce per primo
 					 */
 
-					System.out.println("\n" + player.getClass().getName() + " Attacks");
+					System.out.println("\n" + player.getPlayerName() + " Attacks");
 					player.getFightStyle().useWeapon(mobCa);
 					actualMob.setDamage(player.getFightStyle().getLastDmgHit());
 
@@ -93,13 +96,13 @@ public class Combat {
 					 */
 					if (actualMob.isAlive()) {
 
-						System.out.println("\n" + actualMob.getClass().getName() + " Attacks");
+						System.out.println("\n" + actualMob.getMobName() + " Attacks");
 						actualMob.getFightStyle().useWeapon(mobCa);
 						player.setDamage(actualMob.getFightStyle().getLastDmgHit());
 
 					} else {
 
-						System.out.println("\n" + actualMob.getClass().getName() + " has been defeated");
+						System.out.println("\n" + actualMob.getMobName() + " has been defeated");
 
 					}
 
@@ -111,7 +114,7 @@ public class Combat {
 					/*
 					 * Inizia il Mob, colpisce per primo
 					 */
-					System.out.println("\n" + actualMob.getClass().getName() + " Attacks");
+					System.out.println("\n" + actualMob.getMobName() + " Attacks");
 					actualMob.getFightStyle().useWeapon(mobCa);
 					player.setDamage(actualMob.getFightStyle().getLastDmgHit());
 
@@ -121,13 +124,13 @@ public class Combat {
 						 * Poi colpisce il Player
 						 */
 
-						System.out.println("\n" + player.getClass().getName() + " Attacks");
+						System.out.println("\n" + player.getPlayerName() + " Attacks");
 						player.getFightStyle().useWeapon(mobCa);
 						actualMob.setDamage(player.getFightStyle().getLastDmgHit());
 
 						if (!actualMob.isAlive()) {
 
-							System.out.println("\n" + actualMob.getClass().getName() + " has been defeated");
+							System.out.println("\n" + actualMob.getMobName() + " has been defeated");
 						}
 					}
 				}
@@ -144,17 +147,17 @@ public class Combat {
 			 */
 
 			if (player.isAlive() && mobFighted < LAST_MOB) {
-				System.out.println(player.getClass().getName() + " is restoring HP");
+				System.out.println(player.getPlayerName() + " is restoring HP");
 				this.restorePlayer();
 
 			} else if (player.isAlive() && mobFighted == LAST_MOB) {
 
-				System.out.println(player.getClass().getName() + " HAS WIN");
+				System.out.println(player.getPlayerName() + " has defeated every enemy");
 				System.out.println(actualMob);
 
 			} else {
-				System.out.println(player.getClass().getName() + " is dead fighting his " + this.mobFighted + "° "
-						+ actualMob.getClass().getName() + "\n" + actualMob + "\nYOU LOSE");
+				System.out.println(player.getPlayerName() + " is dead fighting his " + this.mobFighted + "° "
+						+ actualMob.getClass().getName() + "\n" + actualMob);
 			}
 
 		}
