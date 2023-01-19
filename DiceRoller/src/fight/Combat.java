@@ -1,5 +1,6 @@
 package fight;
 
+import dices.Dice;
 import playable.*;
 
 public class Combat {
@@ -9,14 +10,20 @@ public class Combat {
 	 */
 
 	/*
-	 * Le due costanti indicano i punti di partenza del primo MOB
+	 * Le costanti indicano i punti di partenza del primo MOB e i coefficenti di
+	 * difficoltà successivi Da modificare per renderele sceglibili al giocatore
 	 */
 
 	private static final Integer START_CA = 10;
 	private static final Integer START_LIFE = 10;
-	private static final Integer LAST_MOB = 10; // Quanti Mob fronteggiare
-	private static final Double INCREASE_HP = 1.3;
+	private static final Integer LAST_MOB = 11; // Quanti Mob fronteggiare
+	private static final Double INCREASE_HP = 1.2;
 	private static final Integer INCREASE_CA = 1;
+	private static final Integer MAX_CA = 20;
+
+	/*
+	 * Luck è un enumeratore che gestisce i 6 casi di fortuna/sfrotuna
+	 */
 
 	/*
 	 * Nei campi abbiamo il Giocatore, una Factory di Mob e tre campi per la prima
@@ -31,7 +38,7 @@ public class Combat {
 	private Integer mobFighted;
 
 	/*
-	 * Statistiche del mob
+	 * Statistiche del mob incrementali
 	 */
 	private Integer mobPf;
 	private Integer mobCa;
@@ -61,6 +68,7 @@ public class Combat {
 			/*
 			 * Stampo Player e Mob
 			 */
+			this.randomAdvDSV(actualMob);
 			System.out.println(player);
 			System.out.println(actualMob);
 
@@ -77,7 +85,7 @@ public class Combat {
 					 */
 
 					System.out.println("\n" + player.getClass().getName() + " Attacks");
-					player.getFightStyle().useAWeapon(mobCa);
+					player.getFightStyle().useWeapon(mobCa);
 					actualMob.setDamage(player.getFightStyle().getLastDmgHit());
 
 					/*
@@ -86,25 +94,25 @@ public class Combat {
 					if (actualMob.isAlive()) {
 
 						System.out.println("\n" + actualMob.getClass().getName() + " Attacks");
-						actualMob.getFightStyle().useAWeapon(mobCa);
+						actualMob.getFightStyle().useWeapon(mobCa);
 						player.setDamage(actualMob.getFightStyle().getLastDmgHit());
 
 					} else {
-						
-						System.out.println(actualMob.getClass().getName() + " has been defeated");
 
-					} 
+						System.out.println("\n" + actualMob.getClass().getName() + " has been defeated");
+
+					}
 
 					/*
-					 * Se è vivo e ha iniziativa colpisce per primo
+					 * Se il mob è vivo e ha iniziativa colpisce per primo
 					 */
-				} else if (actualMob.isAlive()) {
+				} else if (actualMob.getInitiative() >= player.getInitiative() && actualMob.isAlive()) {
 
 					/*
 					 * Inizia il Mob, colpisce per primo
 					 */
 					System.out.println("\n" + actualMob.getClass().getName() + " Attacks");
-					actualMob.getFightStyle().useAWeapon(mobCa);
+					actualMob.getFightStyle().useWeapon(mobCa);
 					player.setDamage(actualMob.getFightStyle().getLastDmgHit());
 
 					if (player.isAlive()) {
@@ -114,27 +122,39 @@ public class Combat {
 						 */
 
 						System.out.println("\n" + player.getClass().getName() + " Attacks");
-						player.getFightStyle().useAWeapon(mobCa);
+						player.getFightStyle().useWeapon(mobCa);
 						actualMob.setDamage(player.getFightStyle().getLastDmgHit());
 
-					}
-					
-				} else {
+						if (!actualMob.isAlive()) {
 
-					System.out.println(actualMob.getClass().getName() + " has been defeated");
+							System.out.println("\n" + actualMob.getClass().getName() + " has been defeated");
+						}
+					}
 				}
 
 			}
 
 			this.mobFighted++;
 			this.nextLevel();
-			System.out.println("\n" +player);
-			if (player.isAlive()) {
+
+			System.out.println("\n" + player);
+
+			/*
+			 * Resoconto di fine Combat
+			 */
+
+			if (player.isAlive() && mobFighted < LAST_MOB) {
 				System.out.println(player.getClass().getName() + " is restoring HP");
 				this.restorePlayer();
 
+			} else if (player.isAlive() && mobFighted == LAST_MOB) {
+
+				System.out.println(player.getClass().getName() + " HAS WIN");
+				System.out.println(actualMob);
+
 			} else {
-				System.out.println(player.getClass().getName() + " is dead, YOU LOSE");
+				System.out.println(player.getClass().getName() + " is dead fighting his " + this.mobFighted + "° "
+						+ actualMob.getClass().getName() + "\n" + actualMob + "\nYOU LOSE");
 			}
 
 		}
@@ -146,7 +166,13 @@ public class Combat {
 	}
 
 	public void setMobCa() {
-		this.mobCa = mobCa + INCREASE_CA;
+		
+		if (this.mobCa < MAX_CA){
+			this.mobCa = mobCa + INCREASE_CA;
+		}else {
+			this.mobCa = MAX_CA;
+		}
+		
 	}
 
 	private void nextLevel() {
@@ -160,5 +186,37 @@ public class Combat {
 
 		this.player.setInitiative();
 		this.player.restoreHp();
+	}
+
+	private void randomAdvDSV(Mob mob) {
+
+		Dice chooseRandom = new Dice(Luck.values().length);
+		Integer randomValue = chooseRandom.roll();
+
+		if (randomValue == Luck.GOOD_FOR_PLAYER.getDiceValue()) {
+			this.player.getFightStyle().setAdvantage();
+			mob.getFightStyle().resetAdDisvantage();
+
+		} else if (randomValue == Luck.BAD_FOR_PLAYER.getDiceValue()) {
+			this.player.getFightStyle().setDisadvantage();
+			mob.getFightStyle().resetAdDisvantage();
+
+		} else if (randomValue == Luck.GOOD_FOR_MOB.getDiceValue()) {
+			mob.getFightStyle().setAdvantage();
+			this.player.getFightStyle().resetAdDisvantage();
+
+		} else if (randomValue == Luck.BAD_FOR_MOB.getDiceValue()) {
+			mob.getFightStyle().setDisadvantage();
+			this.player.getFightStyle().resetAdDisvantage();
+
+		} else if (randomValue == Luck.GOOD_FOR_BOTH.getDiceValue()) {
+			this.player.getFightStyle().setAdvantage();
+			mob.getFightStyle().setAdvantage();
+
+		} else if (randomValue == Luck.NOTHING.getDiceValue()) {
+			this.player.getFightStyle().resetAdDisvantage();
+			mob.getFightStyle().resetAdDisvantage();
+		}
+
 	}
 }

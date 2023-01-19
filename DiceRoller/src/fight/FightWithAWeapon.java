@@ -1,13 +1,17 @@
 package fight;
 
+import java.util.ArrayList;
+
 import weapons.WeaponFactory;
 import weapons.WeaponInterface;
 
 public class FightWithAWeapon implements FightStyleInterface {
 
 	private static final Integer MISS = 0;
+	private static final Integer CRIT = 20;
+	private static final int LEFT = 0;
 	
-	private WeaponInterface customWeapon;
+	private ArrayList <WeaponInterface> customWeapon;
 	private Integer lastRollHit;
 	private Integer lastDmgHit;
 	private boolean isInAdvantage = false;
@@ -21,21 +25,22 @@ public class FightWithAWeapon implements FightStyleInterface {
 	public FightWithAWeapon() {
 		
 		WeaponFactory weaponGen = new WeaponFactory();
-		this.customWeapon = weaponGen.createWeapon();
+		this.customWeapon = new ArrayList<>();
+		this.customWeapon.add(weaponGen.createWeapon());
 
 	}
 
-	private void hitWithAWeapon() {
+	private void hitWithAWeapon(Integer numberOfWeapon) {
 
 		if (isInAdvantage) {
-			System.out.println(customWeapon.getClass().getName() + " is rolling with Advantage");
-			this.lastRollHit = customWeapon.rollAdv();
+			System.out.println(customWeapon.get(numberOfWeapon).getClass().getName() + " is rolling with Advantage");
+			this.lastRollHit = customWeapon.get(numberOfWeapon).rollAdv();
 		} else if (isInDisadvantage) {
-			System.out.println(customWeapon.getClass().getName() + " is rolling with Disadvantage");
-			this.lastRollHit = customWeapon.rollDsv();
+			System.out.println(customWeapon.get(numberOfWeapon).getClass().getName() + " is rolling with Disadvantage");
+			this.lastRollHit = customWeapon.get(numberOfWeapon).rollDsv();
 		} else {
-			System.out.println(customWeapon.getClass().getName() + " is rolling without any modifiers");
-			this.lastRollHit = customWeapon.rollHit();
+			System.out.println(customWeapon.get(numberOfWeapon).getClass().getName() + " is rolling without any modifiers");
+			this.lastRollHit = customWeapon.get(numberOfWeapon).rollHit();
 		}
 	}
 
@@ -44,19 +49,20 @@ public class FightWithAWeapon implements FightStyleInterface {
 	 * Player e Mob usano questo metodo per fronteggiarsi
 	 */
 	
-	public void useAWeapon(Integer armorClass) {
+	public void useWeapon(Integer armorClass) {
 
-		this.hitWithAWeapon();
+		Integer numberOfWeapon = LEFT;
+		this.hitWithAWeapon(numberOfWeapon);
 
-		if (this.lastRollHit == 20) {
-			this.lastDmgHit = customWeapon.rollCrit();
-			System.out.println(customWeapon.getClass().getName() + " Rolled a Crit and dealed : " + this.lastDmgHit + " damage");
+		if (this.lastRollHit == CRIT) {
+			this.lastDmgHit = customWeapon.get(numberOfWeapon).rollCrit();
+			System.out.println(customWeapon.get(numberOfWeapon).getClass().getName() + " Rolled a Crit and dealed : " + this.lastDmgHit + " damage");
 		} else if (this.lastRollHit >= armorClass) {
-			this.lastDmgHit = this.customWeapon.rollDmg();
-			System.out.println(customWeapon.getClass().getName() + " Hitted the target and dealed : " + this.lastDmgHit + " damage");
+			this.lastDmgHit = customWeapon.get(numberOfWeapon).rollDmg();
+			System.out.println(customWeapon.get(numberOfWeapon).getClass().getName() + " Hitted the target and dealed : " + this.lastDmgHit + " damage");
 		} else {
 			this.lastDmgHit = MISS;
-			System.out.println(customWeapon.getClass().getName() + " Missed the target and dealed : " + this.lastDmgHit + " damage");
+			System.out.println(customWeapon.get(numberOfWeapon).getClass().getName() + " Missed the target and dealed : " + this.lastDmgHit + " damage");
 		}
 	}
 
@@ -77,14 +83,15 @@ public class FightWithAWeapon implements FightStyleInterface {
 	}
 
 	public WeaponInterface getCustomWeapon() {
-		return customWeapon;
+		return this.customWeapon.get(LEFT);
 	}
 
 	/*
 	 * Qualora volessi impostare l'arma posso farlo con questo set
 	 */
 	public void setCustomWeapon(WeaponInterface customWeapon) {
-		this.customWeapon = customWeapon;
+		this.customWeapon.set(LEFT, customWeapon);
+		
 	}
 
 	public Integer getLastRollHit() {
@@ -104,7 +111,7 @@ public class FightWithAWeapon implements FightStyleInterface {
 	}
 
 	public String toString() {
-		return this.customWeapon.getClass().getName();
+		return this.customWeapon.get(LEFT).getClass().getName();
 	}
 
 }
