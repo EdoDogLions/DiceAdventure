@@ -1,5 +1,8 @@
 package exe;
 
+import java.awt.GraphicsEnvironment;
+
+import GUI.Gui;
 import playable.*;
 
 public class Main {
@@ -23,6 +26,9 @@ public class Main {
 		/*
 		 * GAME INTRODUCTION
 		 */
+		
+		Gui gameGraphinc = new Gui();
+		
 		System.out.println("Welcome to DiceAdventure");
 		
 		Player player = new Player(100, "Pippo Baudo");
@@ -30,6 +36,12 @@ public class Main {
 		
 		combat.fight();
 		
+//		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//		String [] fonts = ge.getAvailableFontFamilyNames();
+//		
+//		for (String s : fonts) {
+//			System.out.println(s);
+//		}
 	}
 		
 		

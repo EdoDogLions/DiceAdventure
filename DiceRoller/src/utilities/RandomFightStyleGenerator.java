@@ -28,7 +28,7 @@ public class RandomFightStyleGenerator {
 	public FightStyleInterface generateRandomFightStyle() {
 
 		/*
-		 * Aggiungo le 4 armi all'array
+		 * Aggiungo i due stili di combattimento all'array
 		 */
 		fightStyleArray.add(fightWithAWeapon);
 		fightStyleArray.add(fightWithTwoWeapons);
