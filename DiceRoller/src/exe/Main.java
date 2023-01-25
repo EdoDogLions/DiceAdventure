@@ -27,11 +27,11 @@ public class Main {
 		 * GAME INTRODUCTION
 		 */
 		
-		Gui gameGraphinc = new Gui();
+		//Gui gameGraphinc = new Gui();
 		
 		System.out.println("Welcome to DiceAdventure");
 		
-		Player player = new Player(100, "Pippo Baudo");
+		Player player = new Player(100, "EdoTheSpartan");
 		Combat combat = new Combat(player);
 		
 		combat.fight();

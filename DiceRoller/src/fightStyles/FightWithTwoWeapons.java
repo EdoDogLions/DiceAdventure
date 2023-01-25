@@ -9,8 +9,8 @@ import weapons.*;
 public class FightWithTwoWeapons implements FightStyleInterface {
 
 	private static final Integer MISS = 0;
-	private static final Integer LEFT = 0;
-	private static final Integer RIGHT = 1;
+	private static final Integer LEFT_HAND = 0;
+	private static final Integer RIGHT_HAND = 1;
 	private static final Integer CRIT = 20;
 	private static final Integer NUM_WEAPONS = 2;
 	private static final Integer INITIAL_DAMAGE = 0;
@@ -91,10 +91,10 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 		WeaponInterface bowException = new Bow();
 		WeaponFactory weaponGen = new WeaponFactory();
 
-		while (customWeapon.get(LEFT).getClass() == customWeapon.get(RIGHT).getClass()
-				&& customWeapon.get(LEFT).getClass() == bowException.getClass()) {
+		while (customWeapon.get(LEFT_HAND).getClass() == customWeapon.get(RIGHT_HAND).getClass()
+				&& customWeapon.get(LEFT_HAND).getClass() == bowException.getClass()) {
 
-			customWeapon.set(LEFT, weaponGen.createWeapon());
+			customWeapon.set(LEFT_HAND, weaponGen.createWeapon());
 		}
 
 	}
@@ -102,14 +102,14 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 
 	private void formatName() {
 
-		if (this.customWeapon.get(LEFT).getClass() == this.customWeapon.get(RIGHT).getClass()) {
+		if (this.customWeapon.get(LEFT_HAND).getClass() == this.customWeapon.get(RIGHT_HAND).getClass()) {
 
-			this.fightStyleName = "Double " + customWeapon.get(LEFT).getWeaponName();
+			this.fightStyleName = "Double " + customWeapon.get(LEFT_HAND).getWeaponName();
 
 		} else {
 
-			this.fightStyleName = customWeapon.get(LEFT).getWeaponName() + " & "
-					+ customWeapon.get(RIGHT).getWeaponName();
+			this.fightStyleName = customWeapon.get(LEFT_HAND).getWeaponName() + " & "
+					+ customWeapon.get(RIGHT_HAND).getWeaponName();
 		}
 	}
 
@@ -130,14 +130,14 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 	}
 
 	public WeaponInterface getCustomWeapon() {
-		return this.customWeapon.get(LEFT);
+		return this.customWeapon.get(LEFT_HAND);
 	}
 
 	/*
 	 * Qualora volessi impostare l'arma posso farlo con questo set
 	 */
 	public void setCustomWeapon(WeaponInterface customWeapon) {
-		this.customWeapon.set(LEFT, customWeapon);
+		this.customWeapon.set(LEFT_HAND, customWeapon);
 
 	}
 

@@ -27,7 +27,6 @@ public class RandomWeaponGenerator {
 		this.weaponArray = new ArrayList<WeaponInterface>();
 		
 
-
 	}
 
 	public WeaponInterface generateRandomWeapon() {
