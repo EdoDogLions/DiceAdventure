@@ -11,12 +11,11 @@ public class PlayableAbstract implements PlayableInterface{
 	private static final Integer ROLL_DICE = 20;
 	private static final Integer CA_DICE = 8;
 	
-	private Dice d20 = new Dice(ROLL_DICE);
-	private Dice d8 = new Dice(CA_DICE);
+	private final Dice d20 = new Dice(ROLL_DICE);
+	private final Dice d8 = new Dice(CA_DICE);
 	
 	private final RandomFightStyleGenerator fsGen= new RandomFightStyleGenerator();
-	//private MobNameGenerator mobNameGen = new MobNameGenerator();
-
+	
 	private Integer healthPoints;
 	private Integer armorClass;
 	private FightStyleInterface fightStyle;

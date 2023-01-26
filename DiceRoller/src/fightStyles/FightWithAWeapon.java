@@ -11,7 +11,7 @@ public class FightWithAWeapon implements FightStyleInterface {
 	private static final Integer CRIT = 20;
 	private static final int LEFT = 0;
 	
-	private ArrayList <WeaponInterface> customWeapon;
+	private final ArrayList <WeaponInterface> customWeapon;
 	private Integer lastRollHit;
 	private Integer lastDmgHit;
 	private boolean isInAdvantage = false;

@@ -8,8 +8,8 @@ public class Dice implements DiceInterface {
 	 * 
 	 */
 	
-	private static final int LOW = 1;	//Valore minimo della faccia
-	private int faces;
+	private static final Integer LOW = 1;	//Valore minimo della faccia
+	private final Integer faces;
 	
 	/*
 	 * COSTRUTTORE

@@ -15,7 +15,7 @@ public class FightWithTwoWeapons implements FightStyleInterface {
 	private static final Integer NUM_WEAPONS = 2;
 	private static final Integer INITIAL_DAMAGE = 0;
 
-	private ArrayList<WeaponInterface> customWeapon;
+	private final ArrayList<WeaponInterface> customWeapon;
 	private Integer lastRollHit;
 	private Integer lastDmgHit;
 	private boolean isInAdvantage = false;

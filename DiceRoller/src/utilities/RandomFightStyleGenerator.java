@@ -12,10 +12,10 @@ public class RandomFightStyleGenerator {
 	private static final Integer FIGHT_STYLE = 2;
 	private static final Integer ARRAY_START = 1;
 
-	private FightWithAWeapon fightWithAWeapon;
-	private FightWithTwoWeapons fightWithTwoWeapons;
-	private ArrayList<FightStyleInterface> fightStyleArray;
-	private Dice random = new Dice(FIGHT_STYLE);
+	private final FightWithAWeapon fightWithAWeapon;
+	private final FightWithTwoWeapons fightWithTwoWeapons;
+	private final ArrayList<FightStyleInterface> fightStyleArray;
+	private final Dice random = new Dice(FIGHT_STYLE);
 
 	public RandomFightStyleGenerator() {
 

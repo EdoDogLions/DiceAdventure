@@ -9,13 +9,13 @@ public class RandomWeaponGenerator {
 	private static final Integer WEAPONS = 5;
 	private static final Integer ARRAY_START = 1;
 
-	private WeaponInterface sword;
-	private WeaponInterface bow;
-	private WeaponInterface dagger;
-	private WeaponInterface broadsword;
-	private WeaponInterface hammer;
-	private Dice random = new Dice(WEAPONS);
-	private ArrayList<WeaponInterface> weaponArray;
+	private final WeaponInterface sword;
+	private final WeaponInterface bow;
+	private final WeaponInterface dagger;
+	private final WeaponInterface broadsword;
+	private final WeaponInterface hammer;
+	private final Dice random = new Dice(WEAPONS);
+	private final ArrayList<WeaponInterface> weaponArray;
 
 	public RandomWeaponGenerator() {
 

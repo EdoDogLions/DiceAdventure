@@ -5,10 +5,10 @@ import utilities.MobNameGenerator;
 public class Mob extends PlayableAbstract {
 
 
-	private MobNameGenerator nameGen = new MobNameGenerator();
+	private final MobNameGenerator nameGen = new MobNameGenerator();
 
 
-	public Mob(Integer hp, Integer ac) { // Iniziativa va tirata
+	public Mob(Integer hp, Integer ac) {
 		super(hp, ac);
 		super.setName(nameGen.getName());
 		

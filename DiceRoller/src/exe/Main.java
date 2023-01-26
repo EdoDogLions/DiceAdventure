@@ -31,7 +31,7 @@ public class Main {
 		
 		System.out.println("Welcome to DiceAdventure");
 		
-		Player player = new Player(100, "EdoTheSpartan");
+		Player player = new Player(100, "Ken, Fantastico Guerriero");
 		Combat combat = new Combat(player);
 		
 		combat.fight();

@@ -3,18 +3,17 @@ package playable;
 
 public class Player extends PlayableAbstract {
 
-	private static final Double RESTORE = 0.5;
-	private static final Integer DEATH = 0;
+	private static final Double RESTORE = 0.2;	//20% degli HP massimi
 
-	private Integer maxHp; // Punti ferita massimi
+	private final Integer maxHp; // Punti ferita massimi
 
-	public Player(Integer hp, String playerName) {
+	public Player(final Integer hp, final String playerName) {
 		super(hp, playerName);
 		this.maxHp = hp;
 	}
 
 	/*
-	 * Ripristino Hp attuali + x% degli Hp massimi determinato dalla variabile
+	 * Ripristino X% degli Hp massimi determinato dalla variabile
 	 * RESTORE
 	 */
 	public void restoreHp() {
@@ -23,17 +22,6 @@ public class Player extends PlayableAbstract {
 			super.setHealthPoints( (int) (super.getHealthPoints() + (RESTORE * this.maxHp)));
 		} else {
 			super.setHealthPoints(this.maxHp);
-		}
-	}
-
-	public boolean isAlive() {
-
-		if (super.getHealthPoints() > DEATH) {
-			return true;
-		} else {
-
-			return false;
-
 		}
 	}
 

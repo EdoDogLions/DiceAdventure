@@ -17,14 +17,10 @@ public class Combat {
 
 	private static final Integer START_CA = 10;
 	private static final Integer START_LIFE = 10;
-	private static final Integer LAST_MOB = 15; // Quanti Mob fronteggiare
-	private static final Double INCREASE_HP = 1.3;
+	private static final Integer LAST_MOB = 10; // Quanti Mob fronteggiare
+	private static final Double INCREASE_HP = 1.2;
 	private static final Integer INCREASE_CA = 1;
 	private static final Integer MAX_CA = 20;
-
-	/*
-	 * Luck è un enumeratore che gestisce i 6 casi di fortuna/sfrotuna
-	 */
 
 	/*
 	 * Nei campi abbiamo il Giocatore, una Factory di Mob e tre campi per la prima
@@ -32,16 +28,8 @@ public class Combat {
 	 */
 	private final Player player;
 	private final MobFactory mobFactory;
-
-	/*
-	 * Contatore dei Mob affrontati
-	 */
-	private Integer mobFighted;
-
-	/*
-	 * Statistiche del mob incrementali
-	 */
-	private Integer mobPf;
+	private Integer mobFighted; //Contatore dei Mob affrontati
+	private Integer mobPf; //Statistiche del mob incrementali
 	private Integer mobCa;
 
 	public Combat(Player player) {
@@ -55,9 +43,8 @@ public class Combat {
 	}
 
 	public void fight() {
-
+		
 		while (this.mobFighted < LAST_MOB && player.isAlive()) {
-
 			/*
 			 * Creo un Mob
 			 */
@@ -137,7 +124,6 @@ public class Combat {
 			this.nextLevel();
 
 			System.out.println("\n" + player);
-
 			/*
 			 * Resoconto di fine Combat
 			 */
@@ -149,7 +135,7 @@ public class Combat {
 			} else if (player.isAlive() && mobFighted == LAST_MOB) {
 
 				System.out.println(player.getName() + " has defeated every enemy");
-				System.out.println(actualMob);
+				//System.ouScanner s = new Scanner(System.in);t.println(actualMob); era per controllare se effettivamente uccidesse l'ultimo
 
 			} else {
 				System.out.println(player.getName() + " is dead fighting his " + this.mobFighted + "° "
@@ -178,6 +164,7 @@ public class Combat {
 
 		this.setMobPf();
 		this.setMobCa();
+		//this.pauseOutput();
 
 	}
 
@@ -186,6 +173,10 @@ public class Combat {
 		this.player.setInitiative();
 		this.player.restoreHp();
 	}
+
+	/*
+	 * Luck è un enumeratore che gestisce i 6 casi di fortuna/sfrotuna
+	 */
 
 	private void randomAdvDSV(Mob mob) {
 
@@ -218,4 +209,10 @@ public class Combat {
 		}
 
 	}
+//	@SuppressWarnings("resource")
+//	private void pauseOutput() {
+//		
+//		System.out.println("Press Enter Key To Continue...");
+//		new java.util.Scanner(System.in).nextLine();
+//	}
 }
