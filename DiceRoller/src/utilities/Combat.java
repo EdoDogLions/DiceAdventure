@@ -1,8 +1,7 @@
-package exe;
+package utilities;
 
 import dices.Dice;
 import playable.*;
-import utilities.Luck;
 
 public class Combat {
 

@@ -4,6 +4,7 @@ import java.awt.GraphicsEnvironment;
 
 import GUI.Gui;
 import playable.*;
+import utilities.Combat;
 
 public class Main {
 
