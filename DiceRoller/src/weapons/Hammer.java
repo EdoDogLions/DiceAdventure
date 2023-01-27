@@ -1,5 +1,7 @@
 package weapons;
-
+/*
+ * Beta
+ */
 public class Hammer extends WeaponAbstract {
 
 	private static final Integer DAMAGE = 6;

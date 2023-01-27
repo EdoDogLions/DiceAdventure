@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.function.Predicate;
 
 import weapons.*;
-
+/*
+ * Beta
+ */
 public class FightWithTwoWeapons implements FightStyleInterface {
 
 	private static final Integer MISS = 0;

@@ -1,6 +1,7 @@
 package playable;
-
-
+/*
+ * Beta
+ */
 public class Player extends PlayableAbstract {
 
 	private static final Double RESTORE = 0.2;	//20% degli HP massimi

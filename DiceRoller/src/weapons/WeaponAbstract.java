@@ -1,7 +1,9 @@
 package weapons;
 
 import dices.Dice;
-
+/*
+ * Beta
+ */
 public abstract class WeaponAbstract implements WeaponInterface {
 
 	private static final Integer HIT = 20;

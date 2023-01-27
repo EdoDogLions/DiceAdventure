@@ -1,5 +1,7 @@
 package utilities;
-
+/*
+ * Beta
+ */
 public enum Luck {
 
 	GOOD_FOR_PLAYER(1),

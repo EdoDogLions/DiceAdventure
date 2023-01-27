@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
+/*
+ * Beta
+ */
 public class Gui {
 		
 	private static final Integer DEFAUT_WEIGHT = 800;

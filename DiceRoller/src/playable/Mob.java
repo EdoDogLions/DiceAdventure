@@ -1,7 +1,9 @@
 package playable;
 
 import utilities.MobNameGenerator;
-
+/*
+ * Beta
+ */
 public class Mob extends PlayableAbstract {
 
 

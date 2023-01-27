@@ -2,7 +2,9 @@ package utilities;
 
 import dices.Dice;
 import playable.*;
-
+/*
+ * Beta
+ */
 public class Combat {
 
 	/*

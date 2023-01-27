@@ -3,7 +3,9 @@ package dices;
 import java.util.*;
 
 public class Dice implements DiceInterface {
+	
 	/*
+	 * Beta
 	 * Simulare il lancio di un qualsiasi tipo di Dado generico
 	 * 
 	 */

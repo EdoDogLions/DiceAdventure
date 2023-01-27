@@ -6,7 +6,9 @@ import dices.Dice;
 import fightStyles.FightStyleInterface;
 import fightStyles.FightWithAWeapon;
 import fightStyles.FightWithTwoWeapons;
-
+/*
+ * Beta
+ */
 public class RandomFightStyleGenerator {
 
 	private static final Integer FIGHT_STYLE = 2;

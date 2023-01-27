@@ -1,7 +1,9 @@
 package utilities;
 
 import dices.Dice;
-
+/*
+ * Beta
+ */
 public class MobNameGenerator {
 	
 	private static final Integer BOUND = 1;	//Bound è 1 perchè il dado lancia da 1 - X e l'array è da 0 a X-1

@@ -1,5 +1,7 @@
 package weapons;
-
+/*
+ * Beta
+ */
 public class Broadsword extends WeaponAbstract {
 	
 	private static final Integer DAMAGE = 10;

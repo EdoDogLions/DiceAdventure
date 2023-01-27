@@ -1,5 +1,7 @@
 package weapons;
-
+/*
+ * Beta
+ */
 public class Bow extends WeaponAbstract {
 
 	private static final Integer DAMAGE = 8;

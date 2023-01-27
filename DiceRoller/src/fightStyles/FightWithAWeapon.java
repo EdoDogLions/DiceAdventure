@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import weapons.WeaponFactory;
 import weapons.WeaponInterface;
-
+/*
+ * Beta
+ */
 public class FightWithAWeapon implements FightStyleInterface {
 
 	private static final Integer MISS = 0;

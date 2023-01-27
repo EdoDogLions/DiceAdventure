@@ -1,7 +1,10 @@
 package dices;
 
 public interface DiceInterface {
-
-	public int roll();
+	/*
+	 * Beta
+	 */
 	
+	public int roll();
+
 }

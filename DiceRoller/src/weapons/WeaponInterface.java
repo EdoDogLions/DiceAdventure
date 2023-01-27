@@ -1,5 +1,7 @@
 package weapons;
-
+/*
+ * Beta
+ */
 public interface WeaponInterface {
 
 	public Integer rollDmg();

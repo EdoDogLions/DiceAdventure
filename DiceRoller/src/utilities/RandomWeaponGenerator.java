@@ -3,7 +3,9 @@ package utilities;
 import java.util.ArrayList;
 import dices.Dice;
 import weapons.*;
-
+/*
+ * Beta
+ */
 public class RandomWeaponGenerator {
 
 	private static final Integer WEAPONS = 5;

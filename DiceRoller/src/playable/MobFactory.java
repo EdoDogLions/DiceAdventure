@@ -1,5 +1,7 @@
 package playable;
-
+/*
+ * Beta
+ */
 public class MobFactory implements MobFactoryInterface{
 
 	

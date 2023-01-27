@@ -3,7 +3,9 @@ package playable;
 import dices.Dice;
 import fightStyles.FightStyleInterface;
 import utilities.*;
-
+/*
+ * Beta
+ */
 public class PlayableAbstract implements PlayableInterface{
 
 	private static final Integer DEATH = 0;

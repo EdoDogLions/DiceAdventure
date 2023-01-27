@@ -8,7 +8,7 @@ import utilities.Combat;
 
 public class Main {
 
-	/*
+	/* Beta
 	 * Appunti per l'applicazione:
 	 * 
 	 * 3 livelli di difficoltà EASY = 1.5, MEDIUM = 2, HARD = 2.5 //Moltiplicativo HP non intacco la CA
