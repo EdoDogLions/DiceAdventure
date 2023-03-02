@@ -1,5 +1,7 @@
 package playable;
 
+import java.util.Optional;
+
 import dices.Dice;
 import fightStyles.FightStyleInterface;
 import utilities.*;
@@ -22,7 +24,7 @@ public class PlayableAbstract implements PlayableInterface{
 	private Integer armorClass;
 	private FightStyleInterface fightStyle;
 	private Integer initiative;
-	private String name;
+	private Optional<String> name;
 
 	/*
 	 * Costruttore Mob
@@ -32,7 +34,7 @@ public class PlayableAbstract implements PlayableInterface{
 		this.armorClass = ac;
 		this.fightStyle = fsGen.generateRandomFightStyle();
 		this.initiative = d20.roll();
-		this.name = null;
+		this.name = Optional.empty();
 	}
 	
 	/*
@@ -43,7 +45,7 @@ public class PlayableAbstract implements PlayableInterface{
 		this.armorClass = BASE_CA + d8.roll();
 		this.fightStyle = fsGen.generateRandomFightStyle();
 		this.initiative = d20.roll();
-		this.name = name;
+		this.name = Optional.ofNullable(name);
 	}
 
 	public Integer getHealthPoints() {
@@ -78,7 +80,7 @@ public class PlayableAbstract implements PlayableInterface{
 		 this.initiative = d20.roll();
 	}
 
-	public String getName() {
+	public Optional<String> getName() {
 		return this.name;
 	}
 	public boolean isAlive() {
@@ -94,14 +96,14 @@ public class PlayableAbstract implements PlayableInterface{
 
 	public String toString() {
 
-		return this.getClass().getName().toUpperCase() + " STATS:" + "\nNAME: " + this.name
+		return this.getClass().getSimpleName().toUpperCase() + " STATS:" + "\nNAME: " + this.name.get()
 				+ "\nHP: " + this.healthPoints + "\nCA: "
 				+ this.armorClass + "\nFIGHT STYLE: " + this.fightStyle + "\nINITIATIVE: " + this.initiative + "\n";
 	}
 
 	public void setName(String name) {
 		
-		this.name = name;
+		this.name = Optional.ofNullable(name);
 		
 	}
 }

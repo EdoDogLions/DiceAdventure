@@ -71,7 +71,7 @@ public class Combat {
 					 * Inizia il player, colpisce per primo
 					 */
 
-					System.out.println("\n" + player.getName() + " Attacks");
+					System.out.println("\n" + player.getName().get() + " Attacks");
 					player.getFightStyle().useWeapon(mobCa);
 					actualMob.setDamage(player.getFightStyle().getLastDmgHit());
 
@@ -80,13 +80,13 @@ public class Combat {
 					 */
 					if (actualMob.isAlive()) {
 
-						System.out.println("\n" + actualMob.getName() + " Attacks");
+						System.out.println("\n" + actualMob.getName().get() + " Attacks");
 						actualMob.getFightStyle().useWeapon(mobCa);
 						player.setDamage(actualMob.getFightStyle().getLastDmgHit());
 
 					} else {
 
-						System.out.println("\n" + actualMob.getName() + " has been defeated");
+						System.out.println("\n" + actualMob.getName().get() + " has been defeated");
 
 					}
 
@@ -98,7 +98,7 @@ public class Combat {
 					/*
 					 * Inizia il Mob, colpisce per primo
 					 */
-					System.out.println("\n" + actualMob.getName() + " Attacks");
+					System.out.println("\n" + actualMob.getName().get() + " Attacks");
 					actualMob.getFightStyle().useWeapon(mobCa);
 					player.setDamage(actualMob.getFightStyle().getLastDmgHit());
 
@@ -108,13 +108,13 @@ public class Combat {
 						 * Poi colpisce il Player
 						 */
 
-						System.out.println("\n" + player.getName() + " Attacks");
+						System.out.println("\n" + player.getName().get() + " Attacks");
 						player.getFightStyle().useWeapon(mobCa);
 						actualMob.setDamage(player.getFightStyle().getLastDmgHit());
 
 						if (!actualMob.isAlive()) {
 
-							System.out.println("\n" + actualMob.getName() + " has been defeated");
+							System.out.println("\n" + actualMob.getName().get() + " has been defeated");
 						}
 					}
 				}
@@ -130,17 +130,17 @@ public class Combat {
 			 */
 
 			if (player.isAlive() && mobFighted < LAST_MOB) {
-				System.out.println(player.getName() + " is restoring HP");
+				System.out.println(player.getName().get() + " is restoring HP");
 				this.restorePlayer();
 
 			} else if (player.isAlive() && mobFighted == LAST_MOB) {
 
-				System.out.println(player.getName() + " has defeated every enemy");
+				System.out.println(player.getName().get() + " has defeated every enemy");
 				//System.ouScanner s = new Scanner(System.in);t.println(actualMob); era per controllare se effettivamente uccidesse l'ultimo
 
 			} else {
-				System.out.println(player.getName() + " is dead fighting his " + this.mobFighted + "° "
-						+ actualMob.getClass().getName() + "\n" + actualMob);
+				System.out.println(player.getName().get() + " is dead fighting his " + this.mobFighted + "° "
+						+ actualMob.getClass().getSimpleName() + " who survived with this stats \n" + actualMob);
 			}
 
 		}

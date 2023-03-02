@@ -4,7 +4,7 @@ package playable;
  */
 public class Player extends PlayableAbstract {
 
-	private static final Double RESTORE = 0.2;	//20% degli HP massimi
+	private static final Double RESTORE = 0.1;	//10% degli HP massimi
 
 	private final Integer maxHp; // Punti ferita massimi
 

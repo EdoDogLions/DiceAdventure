@@ -6,7 +6,7 @@ import dices.Dice;
  */
 public class MobNameGenerator {
 	
-	private static final Integer BOUND = 1;	//Bound è 1 perchè il dado lancia da 1 - X e l'array è da 0 a X-1
+	private static final Integer BOUND = 1;	//Bound è 1 perchè il dado lancia da 1 a X e l'array è da 0 a X-1
 	
 	private final String[] title = {"Lord", "King","Servant","Prince","Queen", "Princess", "Chief" };
 	private final String[] name = {"Vampires", "Zombies", "Thieves", "Lichs", "Dark Druids", "Shadows"};
