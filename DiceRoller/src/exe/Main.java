@@ -1,7 +1,5 @@
 package exe;
 
-import java.awt.GraphicsEnvironment;
-
 import GUI.Gui;
 import playable.*;
 import utilities.Combat;
@@ -28,21 +26,12 @@ public class Main {
 		 * GAME INTRODUCTION
 		 */
 		
-		//Gui gameGraphinc = new Gui();
-		
-		System.out.println("Welcome to DiceAdventure");
-		
 		Player player = new Player(100, "Ken, Fantastico Guerriero");
 		Combat combat = new Combat(player);
+
+		Gui gameGraphinc = new Gui(player, combat);
 		
-		combat.fight();
 		
-//		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//		String [] fonts = ge.getAvailableFontFamilyNames();
-//		
-//		for (String s : fonts) {
-//			System.out.println(s);
-//		}
 	}
 		
 		

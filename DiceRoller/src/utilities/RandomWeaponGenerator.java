@@ -24,7 +24,7 @@ public class RandomWeaponGenerator {
 		this.sword = new Sword();
 		this.bow = new Bow();
 		this.dagger = new Dagger();
-		this.broadsword = new Broadsword();
+		this.broadsword = new Longsword();
 		this.hammer = new Hammer();
 		this.weaponArray = new ArrayList<WeaponInterface>();
 		

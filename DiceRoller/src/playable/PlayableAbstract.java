@@ -20,6 +20,7 @@ public class PlayableAbstract implements PlayableInterface{
 	
 	private final RandomFightStyleGenerator fsGen= new RandomFightStyleGenerator();
 	
+	private Integer maxHp;
 	private Integer healthPoints;
 	private Integer armorClass;
 	private FightStyleInterface fightStyle;
@@ -30,6 +31,7 @@ public class PlayableAbstract implements PlayableInterface{
 	 * Costruttore Mob
 	 */
 	public PlayableAbstract(Integer hp, Integer ac) { // Iniziativa va tirata
+		this.maxHp = hp;
 		this.healthPoints = hp;
 		this.armorClass = ac;
 		this.fightStyle = fsGen.generateRandomFightStyle();
@@ -41,6 +43,7 @@ public class PlayableAbstract implements PlayableInterface{
 	 * Costruttore player
 	 */
 	public PlayableAbstract(Integer hp, String name) { // Iniziativa va tirata
+		this.maxHp = hp;
 		this.healthPoints = hp;
 		this.armorClass = BASE_CA + d8.roll();
 		this.fightStyle = fsGen.generateRandomFightStyle();
@@ -48,6 +51,10 @@ public class PlayableAbstract implements PlayableInterface{
 		this.name = Optional.ofNullable(name);
 	}
 
+	public Integer getMaxHP() {
+		return maxHp;
+	}
+	
 	public Integer getHealthPoints() {
 		return healthPoints;
 	}
@@ -97,7 +104,7 @@ public class PlayableAbstract implements PlayableInterface{
 	public String toString() {
 
 		return this.getClass().getSimpleName().toUpperCase() + " STATS:" + "\nNAME: " + this.name.get()
-				+ "\nHP: " + this.healthPoints + "\nCA: "
+				+ "\nMAX HP: " + this.maxHp + "\nACTUAL HP: " + this.healthPoints + "\nCA: "
 				+ this.armorClass + "\nFIGHT STYLE: " + this.fightStyle + "\nINITIATIVE: " + this.initiative + "\n";
 	}
 

@@ -10,7 +10,7 @@ public class Player extends PlayableAbstract {
 
 	public Player(final Integer hp, final String playerName) {
 		super(hp, playerName);
-		this.maxHp = hp;
+		this.maxHp = super.getMaxHP();
 	}
 
 	/*
@@ -19,10 +19,10 @@ public class Player extends PlayableAbstract {
 	 */
 	public void restoreHp() {
 
-		if ((int) super.getHealthPoints() + (RESTORE * this.maxHp) < this.maxHp) {
+		if ((int) super.getHealthPoints() + (RESTORE * this.maxHp) < super.getMaxHP()) {
 			super.setHealthPoints( (int) (super.getHealthPoints() + (RESTORE * this.maxHp)));
 		} else {
-			super.setHealthPoints(this.maxHp);
+			super.setHealthPoints(super.getMaxHP());
 		}
 	}
 
