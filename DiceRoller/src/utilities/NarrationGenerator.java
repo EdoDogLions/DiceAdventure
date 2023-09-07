@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import playable.Mob;
 import playable.Player;
 
+/**
+ * @author edoardodoglioni This class creates the entire narration we see in the
+ *         game
+ */
 public class NarrationGenerator {
 
 	private static final Integer MAX_SITUATION = 10;
@@ -29,10 +33,13 @@ public class NarrationGenerator {
 
 	}
 
+	/*
+	 * This method give to the fields onceUponATime and badEnd the value of our
+	 * narration
+	 */
 	private void staticSituationGenerator() {
 		onceUponATime = "Once upon a time, in a realm known as Ardania, there lived a valiant hero named "
-				+ player.getName().get()
-				+ ". His armor bore the scars of countless battles, and his "
+				+ player.getName().get() + ". His armor bore the scars of countless battles, and his "
 				+ player.getFightStyle()
 				+ " had tasted the blood of dragons and demons alike. After years of adventures and conquests, "
 				+ player.getName().get() + " was eager to return to his beloved castle,"
@@ -42,9 +49,14 @@ public class NarrationGenerator {
 	}
 
 	/*
-	 * Per rendere più credibile la narrazione la descrizione della seconda parte è
-	 * lasciata all'inizio di un altro fight
+	 * This method describe the fights during the exploration, to give it more
+	 * credibility I choose to split every narration in two part, one before the
+	 * fight and the other after the fight, to best describe what's happening to our
+	 * hero
+	 * 
+	 * @param mob is the actual Mob our Player is fighting
 	 */
+
 	private void populateNarrationArray(Mob mob) {
 
 		/*
@@ -68,8 +80,8 @@ public class NarrationGenerator {
 		/*
 		 * INDEX 2
 		 */
-		fightPart1.add("As he ventured further, he came across a cursed swamp, where was hiding a " + mob.getName().get()
-				+ ". His ghostly forms beckoned him into the muck");
+		fightPart1.add("As he ventured further, he came across a cursed swamp, where was hiding a "
+				+ mob.getName().get() + ". His ghostly forms beckoned him into the muck");
 		fightPart2.add("but with a talisman blessed by the village druids, he banished " + mob.getName().get()
 				+ "and cleansed the land.");
 		/*
@@ -88,15 +100,17 @@ public class NarrationGenerator {
 		/*
 		 * INDEX 5
 		 */
-		fightPart1.add(player.getName().get() + "  is only halfway through his journey, Once into the heart of the Everfrost Peaks, a relentless " + mob.getName().get() + "blocked his path. "
+		fightPart1.add(player.getName().get()
+				+ "  is only halfway through his journey, Once into the heart of the Everfrost Peaks, a relentless "
+				+ mob.getName().get() + "blocked his path. "
 				+ "The bitter cold threatened to freeze his very soul, he enagegd the fight");
 		fightPart2.add(" with fiery resolve, " + player.getName().get() + "pierced the " + mob.getName().get()
 				+ "'s heart, ending its icy reign.");
 		/*
 		 * INDEX 6
 		 */
-		fightPart1.add("A few days later he passed throw the haunted Hollows of Shadows where held a legion of " + mob.getName().get() + ", "
-				+ "their voices a haunting chorus. " + player.getName().get()
+		fightPart1.add("A few days later he passed throw the haunted Hollows of Shadows where held a legion of "
+				+ mob.getName().get() + ", " + "their voices a haunting chorus. " + player.getName().get()
 				+ ", undeterred, try to invoke the divine protection of the Church of the Eternal Light,");
 		fightPart2.add(" sending the " + mob.getName().get()
 				+ " back to the netherworld with a blinding burst of holy energy.");
@@ -127,6 +141,14 @@ public class NarrationGenerator {
 
 	}
 
+	/*
+	 * This method analyze the Player's status and decide what kind of narration
+	 * have to do
+	 * 
+	 * @param numberOfNarrationsMade keep trace of the status of the story
+	 * 
+	 * @return a String who concat two strings based on our Player health status
+	 */
 	public String concatFightString(Integer numberOfNarrationsMade) {
 
 		staticSituationGenerator();
@@ -141,6 +163,14 @@ public class NarrationGenerator {
 			return fightDescription;
 		}
 	}
+
+	/*
+	 * This method generate the actual narration
+	 * 
+	 * @param mob is the actual mob
+	 * 
+	 * @return fightDescription who is a String used from GUI
+	 */
 
 	public String generateNarration(Mob mob) {
 
@@ -166,12 +196,18 @@ public class NarrationGenerator {
 
 	}
 
+	/*
+	 * This method clear the Narration Array
+	 */
 	private void clearNarrationArray() {
 
 		fightPart1.clear();
 		fightPart2.clear();
 	}
-	
+
+	/*
+	 * This method is a getter for the Once Upon a Time Sentence
+	 */
 	public String getOUAT() {
 		return onceUponATime;
 	}

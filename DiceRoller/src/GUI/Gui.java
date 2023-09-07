@@ -21,8 +21,9 @@ import playable.Player;
 import utilities.Combat;
 import utilities.NarrationGenerator;
 
-/*
- * Beta
+/**
+ * @author edoardodoglioni This is the GUI class who design and create the
+ *         entire Graphic User Interface
  */
 public class Gui {
 
@@ -31,7 +32,6 @@ public class Gui {
 	private static final Integer NARRATION_SPEED = 30;
 	private static final Integer COMBAT_SPEED = 10;
 	private static final Integer CREDIT_SPEED = 50;
-
 
 	private JFrame window;
 
@@ -43,9 +43,12 @@ public class Gui {
 
 	private JLabel titleLabel, gameModeTextArea, subtitleLabel, partyLabel;
 
-	private Font titleFont = new Font("Press Start 2P", Font.BOLD, 30), defaultFont = new Font("Press Start 2P", Font.PLAIN, 16),
-			buttonFont = new Font("Press Start 2P", Font.PLAIN, 15), subtitleFont = new Font("Press Start 2P", Font.PLAIN, 20),
-			creditsFont = new Font("Press Start 2P", Font.PLAIN, 20), combatFont = new Font("Press Start 2P", Font.ITALIC, 12),
+	private Font titleFont = new Font("Press Start 2P", Font.BOLD, 30),
+			defaultFont = new Font("Press Start 2P", Font.PLAIN, 16),
+			buttonFont = new Font("Press Start 2P", Font.PLAIN, 15),
+			subtitleFont = new Font("Press Start 2P", Font.PLAIN, 20),
+			creditsFont = new Font("Press Start 2P", Font.PLAIN, 20),
+			combatFont = new Font("Press Start 2P", Font.ITALIC, 12),
 			statsFont = new Font("Press Start 2P", Font.PLAIN, 12);
 
 	private JButton startButton, creditButton, quitButton, backButton, createAdventureButton, createPartyButton,
@@ -76,13 +79,13 @@ public class Gui {
 	private GeneratePartyHandler generatePartyHandler = new GeneratePartyHandler();
 
 	/*
-	 * Object used
+	 * Object used to update the GUI
 	 */
 	private Player player;
 	private Combat combat;
 	private NarrationGenerator rng;
 	private String creditString, narrationString, combatString;
-	private Integer[] numPlayerOptions = { 1, 2, 3, 4};
+	private Integer[] numPlayerOptions = { 1, 2, 3, 4 };
 	private Integer partyMember = 0;
 
 	public Gui(Player player, Combat combat) {
@@ -95,6 +98,9 @@ public class Gui {
 
 	}
 
+	/*
+	 * This method initialize all the Panel of the GUI
+	 */
 	private void initializeGUI() {
 
 		titlePanel = new JPanel();
@@ -107,7 +113,12 @@ public class Gui {
 		gameModeTextPanel = new JPanel();
 		gameModeButtonPanel = new JPanel();
 		partyPanel = new JPanel();
+
 	}
+
+	/*
+	 * This method set all the Panel of the GUI not Visible
+	 */
 
 	private void setInvisible() {
 
@@ -124,7 +135,7 @@ public class Gui {
 	}
 
 	/*
-	 * METODO DI CREAZIONE MENU - DONE
+	 * This method creates the MainMenu
 	 */
 	public void createMainMenu() {
 
@@ -200,13 +211,10 @@ public class Gui {
 	}
 
 	/*
-	 * METODO DI CREAZIONE CREDITS - DONE
+	 * This method creates the CreditScreen
 	 */
 	public void createCreditsScreen() {
 
-		/*
-		 * Facciamo sparire tutto
-		 */
 		setInvisible();
 
 		/*
@@ -226,7 +234,6 @@ public class Gui {
 
 		this.creditTextArea = new JTextArea();
 		creditTextArea.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-
 
 		creditTimer = new Timer(CREDIT_SPEED, new CreditTimeHandler());
 
@@ -257,7 +264,7 @@ public class Gui {
 	}
 
 	/*
-	 * METODO DI SCELTA GAME MODE - DONE
+	 * This method creates the GameModeScreen
 	 */
 	public void createGameModeScreen() {
 
@@ -274,13 +281,14 @@ public class Gui {
 		gameModeTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 150, 0, 0));
 
 		/*
-		 * Buttons for Game Modes
-		 */
-		/*
-		 * Panel contenente createAdventureButton e createPartyButton
+		 * Panel with createAdventureButton e createPartyButton
 		 */
 		this.gameModeButtonPanel = new JPanel(new GridLayout(3, 1));
 		gameModeButtonPanel.setBackground(Color.WHITE);
+
+		/*
+		 * Buttons for Game Modes
+		 */
 
 		this.createAdventureButton = new JButton("ADVENTURE MODE");
 		createAdventureButton.setPreferredSize(new Dimension(150, 60));
@@ -298,9 +306,6 @@ public class Gui {
 		backButton.addActionListener(backHandler);
 
 		/*
-		 * Da fare createPartyHandler
-		 */
-		/*
 		 * Add
 		 */
 		gameModeTextPanel.add(gameModeTextArea);
@@ -313,24 +318,20 @@ public class Gui {
 	}
 
 	/*
-	 * METODO DI AVVIO AVVENTURA - DONE
+	 * This method creates the AdventureScreen
 	 */
 	public void createAdventureScreen() {
 
-		/*
-		 * Facciamo sparire tutto ciò che è presente nella finestra precedente
-		 */
-
 		setInvisible();
 		/*
-		 * TextArea primo avvio
+		 * TextArea first start
 		 */
 
 		this.mainTextPanel = new JPanel(new GridLayout(1, 2));
 		mainTextPanel.setBackground(Color.WHITE);
 		mainTextPanel.setBorder(BorderFactory.createEtchedBorder());
 		/*
-		 * Testo narrativo
+		 * Narrative text
 		 */
 
 		this.combatTextArea = new JTextArea();
@@ -340,10 +341,6 @@ public class Gui {
 		combatTextArea.setLineWrap(true); // It goes new line automatically
 		combatTextArea.setWrapStyleWord(true);
 
-		/*
-		 * Creazione di uno JScrollPane che conterrà la JTextArea
-		 */
-
 		this.narrationTextArea = new JTextArea();
 		narrationTextArea.setEditable(false);
 		narrationTextArea.setFont(defaultFont);
@@ -351,13 +348,17 @@ public class Gui {
 		narrationTextArea.setWrapStyleWord(true);
 		narrationTextArea.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
 
+		/*
+		 * creation of a JScrollPane for the combatTextArea
+		 */
+
 		JScrollPane combatDescriptionScrollPane = new JScrollPane(combatTextArea);
 		combatDescriptionScrollPane.setBackground(Color.WHITE);
 		combatDescriptionScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		combatDescriptionScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 150, 0, 0));
 
 		/*
-		 * Character Stats
+		 * Character Panel
 		 */
 
 		adventureButtonPanel = new JPanel(new GridLayout());
@@ -365,7 +366,7 @@ public class Gui {
 		adventureButtonPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
 
 		adventureBottomPanel = new JPanel(new GridLayout(1, 3));
-		adventureBottomPanel.setSize(new Dimension(DEFAUT_HEIGHT/3, DEFAUT_WEIGHT));
+		adventureBottomPanel.setSize(new Dimension(DEFAUT_HEIGHT / 3, DEFAUT_WEIGHT));
 		adventureBottomPanel.setBackground(Color.WHITE);
 		adventureBottomPanel.setBorder(BorderFactory.createEtchedBorder());
 
@@ -388,7 +389,7 @@ public class Gui {
 		startAdventureButton.addActionListener(adventureHandler);
 
 		/*
-		 * TOP Player Panel
+		 * Lifebar Player Panel
 		 */
 
 		this.playerPanel = new JPanel();
@@ -430,7 +431,7 @@ public class Gui {
 	}
 
 	/*
-	 * METODO DI CREAZIONE PARTY
+	 * This method creates a PartyScreen
 	 */
 	public void createAPartyScreen() {
 
@@ -440,34 +441,32 @@ public class Gui {
 
 		partyPanel = new JPanel(new BorderLayout());
 		partyPanel.setBackground(Color.WHITE);
-		
+
 		partyWelcomePanel = new JPanel(new FlowLayout()); // TOP
 		partyWelcomePanel.setBackground(Color.WHITE);
 		partyWelcomePanel.setBorder(BorderFactory.createEmptyBorder(100, 20, 50, 20));
 
-		
 		partyListPanel = new JPanel(new GridLayout()); // MID
 		partyListPanel.setBackground(Color.WHITE);
-		
+
 		partyButtonPanel = new JPanel(new GridLayout(0, 1)); // BOTTOM
 		partyButtonPanel.setBackground(Color.WHITE);
 
 		partyLabel = new JLabel("How many people in your D&D party?");
 		partyLabel.setFont(subtitleFont);
-		
+
 		numPlayersComboBox = new JComboBox<>(numPlayerOptions);
 		numPlayersComboBox.setFont(buttonFont);
-		
+
 		backButton = new JButton("MAIN MENU");
 		backButton.setFont(buttonFont);
 		backButton.setPreferredSize(new Dimension(150, 60));
 		backButton.addActionListener(backHandler);
-		
+
 		generateButton = new JButton("GENERATE A PARTY");
 		generateButton.setFont(buttonFont);
 		generateButton.setPreferredSize(new Dimension(150, 60));
 		generateButton.addActionListener(generatePartyHandler);
-		
 
 		partyWelcomePanel.add(partyLabel);
 		partyWelcomePanel.add(numPlayersComboBox);
@@ -482,7 +481,7 @@ public class Gui {
 	}
 
 	/*
-	 * HANDLER
+	 * Handler for the buttons
 	 */
 	public class TitleScreenHandler implements ActionListener {
 
@@ -566,6 +565,17 @@ public class Gui {
 		}
 	}
 
+	public class GeneratePartyHandler implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+
+			generatePlayers();
+		}
+	}
+
+	/*
+	 * Handler for the TypeWriteStyle narration
+	 */
 	public class NarrationTimeHandler implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -590,18 +600,13 @@ public class Gui {
 
 	}
 
-	public class GeneratePartyHandler implements ActionListener {
-
-		public void actionPerformed(ActionEvent e) {
-
-			generatePlayers();
-		}
-	}
-
 	/*
-	 * Utility Methods
+	 * Methods to update the GUI
 	 */
 
+	/*
+	 * This method update the status of the lifebar in the AdventureScreen
+	 */
 	private void updateLifeBar() {
 
 		lifeBar.setValue(player.getHealthPoints());
@@ -618,8 +623,8 @@ public class Gui {
 	}
 
 	/*
-	 * The main function of the Adventure, this function update the status of every
-	 * combat choosing what's going on
+	 * This method is the main function of the Adventure, it updates the status of
+	 * every combat choosing what's going on
 	 */
 	private void fightUpdate() {
 
@@ -657,7 +662,7 @@ public class Gui {
 			}
 
 			/*
-			 * Fine avventura
+			 * End of the adventure
 			 */
 
 		} else if (!isEndGame) {
@@ -667,7 +672,7 @@ public class Gui {
 			if (player.isAlive()) {
 
 				/*
-				 * Resoconto ultimo fight
+				 * Lat fight recap
 				 */
 				narrationString = rng.generateNarration(combat.getActualMob());
 				narrationTimer = new Timer(NARRATION_SPEED, new NarrationTimeHandler());
@@ -706,7 +711,7 @@ public class Gui {
 						+ " " + combat.getMobFighted());
 				narrationTimer = new Timer(NARRATION_SPEED, new NarrationTimeHandler());
 
-				combatString = "Your adventure comes to an end. Thanks for playing this game, I hope you enjoyed it. You did it! You won the game, will you have the same luck next time?";
+				combatString = "Your adventure comes to an end. Thanks for playing this game, I hope you enjoyed it.\n\nYou did it! You won the game, will you have the same luck next time?";
 				combatTimer = new Timer(NARRATION_SPEED, new CombatTimeHandler());
 				combatTextArea.setFont(defaultFont);
 
@@ -718,8 +723,9 @@ public class Gui {
 						+ player.getName().get() + "'s forehead, and a warm, healing light enveloped him.";
 
 				narrationTimer = new Timer(NARRATION_SPEED, new NarrationTimeHandler());
-				
-				combatString = "Your adventure comes to an end. Thanks for playing this game, I hope you enjoyed it. Unfortunatly you lost the game, but you can try again to be more lucky next time";
+
+				combatString = "Your adventure comes to an end. Thanks for playing this game, I hope you enjoyed it.\n\nUnfortunatly you lost the game, but you can try again to be more lucky next time.\n\nYou are dead fighting your "
+						+ combat.getMobFighted() + "° enemy.";
 				combatTimer = new Timer(NARRATION_SPEED, new CombatTimeHandler());
 				combatTextArea.setFont(defaultFont);
 
@@ -731,6 +737,10 @@ public class Gui {
 		}
 	}
 
+	/*
+	 * This function clean the TextArea for the combatTextArea and for the
+	 * narrationTextArea
+	 */
 	private void cleanTextArea() {
 
 		narrationString = new String();
@@ -739,6 +749,9 @@ public class Gui {
 		combatTextArea.setText(new String());
 	}
 
+	/*
+	 * This method generate players for the createAParty Handler
+	 */
 	private void generatePlayers() {
 
 		partyTextAreas.clear();

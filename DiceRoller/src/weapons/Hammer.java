@@ -1,6 +1,8 @@
 package weapons;
-/*
- * Beta
+
+/**
+ * @author edoardodoglioni This class extends WeaponAbstract and represents the
+ *         Hammer
  */
 public class Hammer extends WeaponAbstract {
 

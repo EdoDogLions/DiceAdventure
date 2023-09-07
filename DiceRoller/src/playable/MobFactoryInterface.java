@@ -1,6 +1,7 @@
 package playable;
-/*
- * Beta
+
+/**
+ * @author edoardodoglioni This is the Interface of the MobFactory
  */
 public interface MobFactoryInterface {
 

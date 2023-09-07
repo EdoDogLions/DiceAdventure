@@ -1,5 +1,8 @@
 package feature;
 
+/**
+ * @author edoardodoglioni This class rapresents a Player for a D&D Party
+ */
 public class PartyPg {
 
 	private final PairClassRace pair;
@@ -11,6 +14,9 @@ public class PartyPg {
 
 	}
 
+	/*
+	 * This methods are getter for the fields
+	 */
 	public PairClassRace getClassRace() {
 		return pair;
 	}

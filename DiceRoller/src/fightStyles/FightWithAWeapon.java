@@ -1,8 +1,10 @@
 package fightStyles;
 
-/*
- * Beta
+/**
+ * @author edoardodoglioni This class extends the FightStyleAbstract and
+ *         represents the fight with single weapon
  */
+
 public class FightWithAWeapon extends FightStyleAbstract {
 
 	private static final Integer RIGHT_HAND = 0;

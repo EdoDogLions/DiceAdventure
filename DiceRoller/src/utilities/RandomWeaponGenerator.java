@@ -3,8 +3,9 @@ package utilities;
 import java.util.ArrayList;
 import dices.Dice;
 import weapons.*;
-/*
- * Beta
+
+/**
+ * @author edoardodoglioni This class generate a Random Weapon
  */
 public class RandomWeaponGenerator {
 
@@ -27,23 +28,24 @@ public class RandomWeaponGenerator {
 		this.broadsword = new Longsword();
 		this.hammer = new Hammer();
 		this.weaponArray = new ArrayList<WeaponInterface>();
-		
 
 	}
 
+	/*
+	 * This method add all kind of weapons to an array and choose one of them
+	 * randomly
+	 * 
+	 * @return an Object who implements WeaponInterface
+	 */
+
 	public WeaponInterface generateRandomWeapon() {
 
-		/*
-		 * Aggiungo le 4 armi all'array
-		 * Esiste un modo migliore?
-		 */
-		
 		weaponArray.add(this.sword);
 		weaponArray.add(this.bow);
 		weaponArray.add(this.dagger);
 		weaponArray.add(this.broadsword);
 		weaponArray.add(this.hammer);
-		
+
 		return this.weaponArray.get(random.roll() - ARRAY_START);
 	}
 

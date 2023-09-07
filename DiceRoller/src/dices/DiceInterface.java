@@ -1,10 +1,11 @@
 package dices;
 
+/*
+ * @author edoardodoglioni
+ * Interface for class Dice
+ */
 public interface DiceInterface {
-	/*
-	 * Beta
-	 */
-	
+
 	public int roll();
 
 }

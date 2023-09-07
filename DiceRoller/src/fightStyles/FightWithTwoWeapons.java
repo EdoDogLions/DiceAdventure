@@ -4,9 +4,11 @@ import weapons.Bow;
 import weapons.WeaponFactory;
 import weapons.WeaponInterface;
 
-/*
- * Beta
+/**
+ * @author edoardodoglioni This class extends the FightStyleAbstract and
+ *         represents the fight with two weapon
  */
+
 public class FightWithTwoWeapons extends FightStyleAbstract {
 
 	private static final Integer LEFT_HAND = 0;
@@ -25,8 +27,10 @@ public class FightWithTwoWeapons extends FightStyleAbstract {
 	}
 
 	/*
-	 * Il caso del Bow è particolare poichè non si possono avere due archi come armi
-	 * in simultanea
+	 * This method check if we creates two Bows with the WeaponFactory if two bows
+	 * are created we keep generating another weapon untill there's only a bow This
+	 * is made because I choose not to represents a fighter using two bow in the
+	 * same time
 	 */
 
 	private void bowException() {
@@ -41,6 +45,12 @@ public class FightWithTwoWeapons extends FightStyleAbstract {
 		}
 
 	}
+
+	/*
+	 * This is an utility method to have a better string output if we have the same
+	 * weapon in both hands we wrote Double weaponName instead of a repetition of
+	 * the Weapon name
+	 */
 
 	private void formatName() {
 

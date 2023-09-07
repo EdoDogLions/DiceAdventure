@@ -3,6 +3,11 @@ package feature;
 import dices.Dice;
 import java.util.List;
 
+/**
+ * @author edoardodoglioni This class contains all the stats of a character
+ *         based on the D&D Player's Handbook
+ *
+ */
 public class Stats {
 
 	private static final Integer POINT_DICE = 6;
@@ -24,6 +29,33 @@ public class Stats {
 		this.wisdom = calculateDice();
 		this.intelligency = calculateDice();
 		this.charisma = calculateDice();
+	}
+
+	/*
+	 * This method calculate the stats of a character based on the rules of D&D
+	 * rolling 4 times a 6faced dice, removing the lowest and summing the other
+	 * three
+	 * 
+	 * @return the value of the Sum of the dices
+	 */
+	private Integer calculateDice() {
+
+		List<Integer> rolledDices = dPoints.rollXtimes(STANDARD);
+		rolledDices.sort(new DiceComparator());
+		rolledDices.remove(rolledDices.size() - STANDARD);
+
+		return dPoints.sumDices(rolledDices);
+	}
+
+	/*
+	 * This method calculates the value of the Modifier based on D&D Player's
+	 * Handbook Rules
+	 * 
+	 * @return the value of the Modifier
+	 */
+	private Integer calculateMod(Integer value) {
+
+		return (value - 10) / 2;
 	}
 
 	public Integer getStrenght() {
@@ -51,26 +83,10 @@ public class Stats {
 	}
 
 	public String toString() {
-		return "STR: " + this.strenght + " [" + calculateMod(strenght) + "]" +
-				"\nDEX: " + this.dexterity + " [" + calculateMod(dexterity) + "]" +
-				"\nCOS: " + this.costitution + " [" + calculateMod(costitution) +"]" +
-				"\nWIS: " + this.wisdom + " [" + calculateMod(wisdom) +"]" +
-				"\nINT: " + this.intelligency + " [" + calculateMod(intelligency) +"]" +
-				"\nCHA: " + this.charisma + " [" + calculateMod(charisma) + "]";
-	}
-
-	private Integer calculateDice() {
-
-		List<Integer> rolledDices = dPoints.rollXtimes(STANDARD);
-		rolledDices.sort(new DiceComparator());
-		rolledDices.remove(rolledDices.size() - STANDARD);
-
-		return dPoints.sumDices(rolledDices);
-	}
-	
-	private Integer calculateMod(Integer value) {
-		
-		return (value - 10) / 2;
+		return "STR: " + this.strenght + " [" + calculateMod(strenght) + "]" + "\nDEX: " + this.dexterity + " ["
+				+ calculateMod(dexterity) + "]" + "\nCOS: " + this.costitution + " [" + calculateMod(costitution) + "]"
+				+ "\nWIS: " + this.wisdom + " [" + calculateMod(wisdom) + "]" + "\nINT: " + this.intelligency + " ["
+				+ calculateMod(intelligency) + "]" + "\nCHA: " + this.charisma + " [" + calculateMod(charisma) + "]";
 	}
 
 }

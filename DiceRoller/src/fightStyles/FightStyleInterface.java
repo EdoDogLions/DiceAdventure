@@ -1,8 +1,9 @@
 package fightStyles;
 
-/*
- * Beta
+/**
+ * @author edoardodoglioni Interface for FightStyle
  */
+
 public interface FightStyleInterface {
 
 	public void useWeapon(Integer armorClass);

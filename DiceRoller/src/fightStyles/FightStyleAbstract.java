@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import weapons.WeaponFactory;
 import weapons.WeaponInterface;
 
+/**
+ * @author edoardodoglioni This abstract class represents a fight style who can
+ *         be of one or two weapons
+ * 
+ */
 public abstract class FightStyleAbstract implements FightStyleInterface {
 
 	private static final Integer MISS = 0;
@@ -31,6 +36,11 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 
 	}
 
+	/*
+	 * This method is used to try to hit with a weapons
+	 * 
+	 * @param numberOfWeapon this is the number of weapon used
+	 */
 	private void hitWithAWeapon(Integer numberOfWeapon) {
 
 		if (isInAdvantage) {
@@ -46,7 +56,12 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 		}
 	}
 
-	@Override
+	/*
+	 * This method is used to use the weapons
+	 * 
+	 * @param armorClass this is the value of the armor class of the enemy
+	 */
+
 	public void useWeapon(Integer armorClass) {
 
 		Integer totalDamage = INITIAL_DAMAGE;
@@ -74,6 +89,9 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 		}
 	}
 
+	/*
+	 * This method is used to set the situation of Advantage
+	 */
 
 	public void setAdvantage() {
 		isInAdvantage = true;
@@ -81,10 +99,18 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 
 	}
 
+	/*
+	 * This method is used to set the situation of Disadvantage
+	 */
+
 	public void setDisadvantage() {
 		isInAdvantage = false;
 		isInDisadvantage = true;
 	}
+
+	/*
+	 * This method is used to reset the situation of Advantage/Disadvantage
+	 */
 
 	public void resetAdDisvantage() {
 		isInAdvantage = false;
@@ -92,12 +118,18 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 	}
 
 	/*
-	 * Qualora volessi impostare l'arma posso farlo con questo set
+	 * This method is used to set a customWeapon
+	 * 
+	 * @param customWeapon is a Weapon
 	 */
 
 	public void setCustomWeapon(WeaponInterface customWeapon) {
 
 	}
+
+	/*
+	 * Here we have our getters to have acces to the field of the class
+	 */
 
 	public Integer getLastRollHit() {
 		return lastRollHit;
@@ -114,7 +146,7 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 	public boolean isInDisadvantage() {
 		return isInDisadvantage;
 	}
-	
+
 	public String toString() {
 		return this.fightStyleName;
 	}

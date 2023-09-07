@@ -1,4 +1,5 @@
 # DiceAdventure
+@author Edoardo Doglioni
 
 This is my PMO exams project, before the start be sure you have installed the font of the game: Press Start 2P
 If you don't have it installed you can find it here:

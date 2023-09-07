@@ -6,9 +6,11 @@ import dices.Dice;
 import fightStyles.FightStyleInterface;
 import fightStyles.FightWithAWeapon;
 import fightStyles.FightWithTwoWeapons;
-/*
- * Beta
+
+/**
+ * @author edoardodoglioni This utility class generate a Random Fight Style
  */
+
 public class RandomFightStyleGenerator {
 
 	private static final Integer FIGHT_STYLE = 2;
@@ -27,11 +29,15 @@ public class RandomFightStyleGenerator {
 
 	}
 
+	/*
+	 * This method generate a Random Fight Style adding it to an array of FightStyle
+	 * and choosing randomly which one to use
+	 * 
+	 * @return an Object who implements a FightStyleInterface (It can be
+	 * FightWithAWeapon, or FightWithTwoWeapons)
+	 */
 	public FightStyleInterface generateRandomFightStyle() {
 
-		/*
-		 * Aggiungo i due stili di combattimento all'array
-		 */
 		fightStyleArray.add(fightWithAWeapon);
 		fightStyleArray.add(fightWithTwoWeapons);
 

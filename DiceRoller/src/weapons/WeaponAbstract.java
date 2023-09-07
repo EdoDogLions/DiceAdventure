@@ -1,9 +1,12 @@
 package weapons;
 
 import dices.Dice;
+
 /*
- * Beta
+ * @author edoardodoglioni
+ * This is an abstract class who implements WeaponInterface and represents everything a Weapon can do
  */
+
 public abstract class WeaponAbstract implements WeaponInterface {
 
 	private static final Integer HIT = 20;
@@ -23,15 +26,32 @@ public abstract class WeaponAbstract implements WeaponInterface {
 		this.weaponName = weaponName;
 	}
 
+	/*
+	 * This method roll a Dice who set the damage dealt by the weapon
+	 * 
+	 * @return the field lastDmg where is tracked the damage dealt by the weapon
+	 */
 	public Integer rollDmg() {
 		this.lastDmg = this.diceDmg.roll();
 		return this.lastDmg;
 	}
 
+	/*
+	 * This method roll a Dice who set if the weapon hit his target
+	 * 
+	 * @return the field lastHit where is tracked the last value of the dice to hit
+	 */
+
 	public Integer rollHit() {
 		this.lastHit = this.diceHit.roll();
 		return this.lastHit;
 	}
+
+	/*
+	 * This method roll more dices based on the value of the CRIT of the weapon
+	 * 
+	 * @return the field lastDmg where is tracked the damage dealt by the weapon
+	 */
 
 	public Integer rollCrit() {
 
@@ -40,6 +60,12 @@ public abstract class WeaponAbstract implements WeaponInterface {
 
 	}
 
+	/*
+	 * This method roll dices with Advantage
+	 * 
+	 * @return the field lastHit where is tracked the last value of the dice to hit
+	 */
+
 	public Integer rollAdv() {
 
 		this.lastHit = diceHit.rollWithAdvantage();
@@ -47,12 +73,21 @@ public abstract class WeaponAbstract implements WeaponInterface {
 		return lastHit;
 	}
 
+	/*
+	 * This method roll dices with Disadvantage
+	 * 
+	 * @return the field lastHit where is tracked the last value of the dice to hit
+	 */
+
 	public Integer rollDsv() {
 
 		this.lastHit = diceHit.rollWithDisvantage();
 		return this.lastHit;
 	}
 
+	/*
+	 * This methods are getter of the fields of the class
+	 */
 	public Integer getLastHit() {
 		return this.lastHit;
 	}
@@ -66,12 +101,12 @@ public abstract class WeaponAbstract implements WeaponInterface {
 		return this.diceDmg.getFaces();
 	}
 
+	public String getWeaponName() {
+		return this.weaponName;
+	}
+
 	public String toString() {
 		return "Weapon Name: " + this.weaponName + "\nWeapon Damage: " + this.getMaxDmg();
 
-	}
-
-	public String getWeaponName() {
-		return this.weaponName;
 	}
 }
