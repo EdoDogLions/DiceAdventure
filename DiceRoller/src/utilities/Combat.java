@@ -90,7 +90,7 @@ public class Combat {
 					 */
 
 					System.out.println("\n" + player.getName().get().toUpperCase() + " Attacks");
-					outputString.append("\n" + player.getName().get().toUpperCase() + "\nAttacks with " + player.getFightStyle());
+					outputString.append("\n\n" + player.getName().get().toUpperCase() + "\nAttacks with " + player.getFightStyle());
 					
 					player.getFightStyle().useWeapon(mobCa);
 					outputString.append(" dealing " + player.getFightStyle().getLastDmgHit() +" damage");
@@ -102,7 +102,7 @@ public class Combat {
 					if (actualMob.get().isAlive()) {
 
 						System.out.println("\n" + actualMob.get().getName().get().toUpperCase() + " Attacks");
-						outputString.append("\n" + actualMob.get().getName().get().toUpperCase() + "\nAttacks with" + actualMob.get().getFightStyle());
+						outputString.append("\n\n" + actualMob.get().getName().get().toUpperCase() + "\nAttacks with" + actualMob.get().getFightStyle());
 						
 						actualMob.get().getFightStyle().useWeapon(mobCa);
 						outputString.append(" dealing " + actualMob.get().getFightStyle().getLastDmgHit() +" damage");
@@ -125,7 +125,7 @@ public class Combat {
 					 * Inizia il Mob, colpisce per primo
 					 */
 					System.out.println("\n" + actualMob.get().getName().get().toUpperCase() + " Attacks");
-					outputString.append("\n" + actualMob.get().getName().get().toUpperCase() + "\nAttacks with " + actualMob.get().getFightStyle());
+					outputString.append("\n\n" + actualMob.get().getName().get().toUpperCase() + "\nAttacks with " + actualMob.get().getFightStyle());
 
 					actualMob.get().getFightStyle().useWeapon(mobCa);
 					outputString.append(" dealing " + actualMob.get().getFightStyle().getLastDmgHit() +" damage");
@@ -138,7 +138,7 @@ public class Combat {
 						 */
 
 						System.out.println("\n" + player.getName().get().toUpperCase() + " Attacks");
-						outputString.append("\n" + player.getName().get().toUpperCase() + "\nAttacks with " + player.getFightStyle());
+						outputString.append("\n\n" + player.getName().get().toUpperCase() + "\nAttacks with " + player.getFightStyle());
 
 						player.getFightStyle().useWeapon(mobCa);
 						outputString.append(" dealing " + player.getFightStyle().getLastDmgHit()+ " damage");
