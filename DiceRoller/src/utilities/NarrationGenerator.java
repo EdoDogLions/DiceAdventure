@@ -149,7 +149,7 @@ public class NarrationGenerator {
 	 * 
 	 * @return a String who concat two strings based on our Player health status
 	 */
-	public String concatFightString(Integer numberOfNarrationsMade) {
+	private String concatFightString(Integer numberOfNarrationsMade) {
 
 		staticSituationGenerator();
 		if (player.isAlive()) {

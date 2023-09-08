@@ -15,7 +15,7 @@ public class RandomWeaponGenerator {
 	private final WeaponInterface sword;
 	private final WeaponInterface bow;
 	private final WeaponInterface dagger;
-	private final WeaponInterface broadsword;
+	private final WeaponInterface longsword;
 	private final WeaponInterface hammer;
 	private final Dice random = new Dice(WEAPONS);
 	private final ArrayList<WeaponInterface> weaponArray;
@@ -25,7 +25,7 @@ public class RandomWeaponGenerator {
 		this.sword = new Sword();
 		this.bow = new Bow();
 		this.dagger = new Dagger();
-		this.broadsword = new Longsword();
+		this.longsword = new Longsword();
 		this.hammer = new Hammer();
 		this.weaponArray = new ArrayList<WeaponInterface>();
 
@@ -43,7 +43,7 @@ public class RandomWeaponGenerator {
 		weaponArray.add(this.sword);
 		weaponArray.add(this.bow);
 		weaponArray.add(this.dagger);
-		weaponArray.add(this.broadsword);
+		weaponArray.add(this.longsword);
 		weaponArray.add(this.hammer);
 
 		return this.weaponArray.get(random.roll() - ARRAY_START);
