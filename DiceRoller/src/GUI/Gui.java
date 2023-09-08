@@ -6,7 +6,9 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,8 +31,8 @@ public class Gui {
 
 	private static final Integer DEFAUT_WEIGHT = 900;
 	private static final Integer DEFAUT_HEIGHT = 600;
-	private static final Integer NARRATION_SPEED = 30;
-	private static final Integer COMBAT_SPEED = 10;
+	private static final Integer NARRATION_SPEED = 35;
+	private static final Integer COMBAT_SPEED = 20;
 	private static final Integer CREDIT_SPEED = 50;
 
 	private JFrame window;
@@ -140,6 +142,15 @@ public class Gui {
 	public void createMainMenu() {
 
 		/*
+		 * Please update the path with backgrounds.jpg who is in the imgs folder into
+		 * bin
+		 */
+		ImageIcon backgroundImageIcon = new ImageIcon(
+				"/home/edoardodoglioni/Documenti/universita/done/programmazione_oggetti/progetto/DiceAdventure/DiceRoller/bin/imgs/background.jpg");
+
+		ImagePanel imagePanel = new ImagePanel(backgroundImageIcon.getImage());
+
+		/*
 		 * Main Widow, not resizable
 		 */
 		this.window = new JFrame();
@@ -147,19 +158,20 @@ public class Gui {
 		window.setSize(DEFAUT_WEIGHT, DEFAUT_HEIGHT); // WxH
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false); // Layout non modificabile
+		window.setContentPane(imagePanel);
 
 		/*
 		 * Container
 		 */
 		this.container = window.getContentPane();
 		container.setLayout(new BorderLayout(10, 10)); // This creates the BorderLayout, which manages the layout of
-		container.setBackground(Color.WHITE);
 
 		/*
 		 * Title Panel
 		 */
 		this.titlePanel = new JPanel(new GridLayout(0, 1));
-		titlePanel.setBackground(Color.WHITE);
+		titlePanel.setOpaque(false);
+
 		titleLabel = new JLabel("Welcome in DiceAdventure");
 		titleLabel.setBorder(BorderFactory.createEmptyBorder(150, 80, 20, 20));
 		titleLabel.setFont(titleFont);
@@ -172,7 +184,7 @@ public class Gui {
 		 */
 
 		this.startButtonPanel = new JPanel(new GridLayout(0, 1));
-		startButtonPanel.setBackground(Color.WHITE);
+		startButtonPanel.setOpaque(false);
 
 		/*
 		 * Start, Credit, Quit Button
@@ -182,16 +194,25 @@ public class Gui {
 		startButton.setFont(buttonFont);
 		startButton.addActionListener(titleScreenHandler);
 		startButton.setPreferredSize(new Dimension(150, 60));
+		startButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		startButton.setFocusPainted(false);
+		startButton.setContentAreaFilled(false);
 
 		this.creditButton = new JButton("CREDITS");
 		creditButton.setFont(buttonFont);
 		creditButton.addActionListener(creditsScreenHandler);
 		creditButton.setPreferredSize(new Dimension(150, 60));
+		creditButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		creditButton.setFocusPainted(false);
+		creditButton.setContentAreaFilled(false);
 
 		this.quitButton = new JButton("QUIT");
 		quitButton.setFont(buttonFont);
 		quitButton.addActionListener(quitHandler);
 		quitButton.setPreferredSize(new Dimension(150, 60));
+		quitButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		quitButton.setFocusPainted(false);
+		quitButton.setContentAreaFilled(false);
 
 		/*
 		 * Add everything
@@ -222,7 +243,7 @@ public class Gui {
 		 */
 
 		this.creditTextPanel = new JPanel(new BorderLayout());
-		creditTextPanel.setBackground(Color.WHITE);
+		creditTextPanel.setOpaque(false);
 
 		creditString = "DiceAdventure is a Java project made by Edoardo Doglioni\nThis project wants to simulate"
 				+ " a Dungeons and Dragons Adventure.\n" + "The simulation is based around the concept of dice.\n"
@@ -234,6 +255,7 @@ public class Gui {
 
 		this.creditTextArea = new JTextArea();
 		creditTextArea.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+		creditTextArea.setOpaque(false);
 
 		creditTimer = new Timer(CREDIT_SPEED, new CreditTimeHandler());
 
@@ -246,11 +268,15 @@ public class Gui {
 		 * BackButton
 		 */
 		this.backButtonPanel = new JPanel(new GridLayout());
-		backButtonPanel.setBackground(Color.WHITE);
+		backButtonPanel.setOpaque(false);
+
 		this.backButton = new JButton("BACK");
 		backButton.setFont(buttonFont);
 		backButton.addActionListener(backHandler);
 		backButton.setPreferredSize(new Dimension(150, 60));
+		backButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		backButton.setFocusPainted(false);
+		backButton.setContentAreaFilled(false);
 
 		/*
 		 * Add
@@ -274,17 +300,17 @@ public class Gui {
 		 */
 
 		this.gameModeTextPanel = new JPanel(new BorderLayout());
-		gameModeTextPanel.setBackground(Color.WHITE);
+		gameModeTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 150, 0, 0));
+		gameModeTextPanel.setOpaque(false);
 
 		this.gameModeTextArea = new JLabel("Choose your Game Mode:");
 		gameModeTextArea.setFont(titleFont);
-		gameModeTextPanel.setBorder(BorderFactory.createEmptyBorder(0, 150, 0, 0));
 
 		/*
 		 * Panel with createAdventureButton e createPartyButton
 		 */
 		this.gameModeButtonPanel = new JPanel(new GridLayout(3, 1));
-		gameModeButtonPanel.setBackground(Color.WHITE);
+		gameModeButtonPanel.setOpaque(false);
 
 		/*
 		 * Buttons for Game Modes
@@ -294,16 +320,25 @@ public class Gui {
 		createAdventureButton.setPreferredSize(new Dimension(150, 60));
 		createAdventureButton.setFont(buttonFont);
 		createAdventureButton.addActionListener(adventureHandler);
+		createAdventureButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		createAdventureButton.setFocusPainted(false);
+		createAdventureButton.setContentAreaFilled(false);
 
 		this.createPartyButton = new JButton("CREATE YOUR PARTY");
 		createPartyButton.setPreferredSize(new Dimension(150, 60));
 		createPartyButton.setFont(buttonFont);
 		createPartyButton.addActionListener(createAParty);
+		createPartyButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		createPartyButton.setFocusPainted(false);
+		createPartyButton.setContentAreaFilled(false);
 
 		this.backButton = new JButton("BACK");
 		backButton.setPreferredSize(new Dimension(150, 60));
 		backButton.setFont(buttonFont);
 		backButton.addActionListener(backHandler);
+		backButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		backButton.setFocusPainted(false);
+		backButton.setContentAreaFilled(false);
 
 		/*
 		 * Add
@@ -327,21 +362,21 @@ public class Gui {
 		 * TextArea first start
 		 */
 
-		this.mainTextPanel = new JPanel(new GridLayout(1, 2));
-		mainTextPanel.setBackground(Color.WHITE);
-		mainTextPanel.setBorder(BorderFactory.createEtchedBorder());
+		this.mainTextPanel = new JPanel(new GridLayout(1, 0));
+		mainTextPanel.setOpaque(false);
 		/*
 		 * Narrative text
 		 */
 
 		this.combatTextArea = new JTextArea();
-		combatTextArea.setBackground(Color.WHITE);
+		combatTextArea.setOpaque(false);
 		combatTextArea.setEditable(false);
 		combatTextArea.setFont(combatFont);
 		combatTextArea.setLineWrap(true); // It goes new line automatically
 		combatTextArea.setWrapStyleWord(true);
 
 		this.narrationTextArea = new JTextArea();
+		narrationTextArea.setOpaque(false);
 		narrationTextArea.setEditable(false);
 		narrationTextArea.setFont(defaultFont);
 		narrationTextArea.setLineWrap(true); // It goes new line automatically
@@ -353,8 +388,9 @@ public class Gui {
 		 */
 
 		JScrollPane combatDescriptionScrollPane = new JScrollPane(combatTextArea);
-		combatDescriptionScrollPane.setBackground(Color.WHITE);
-		combatDescriptionScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		combatDescriptionScrollPane.setOpaque(false);
+		combatDescriptionScrollPane.getViewport().setOpaque(false);
+		combatDescriptionScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		combatDescriptionScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 150, 0, 0));
 
 		/*
@@ -362,15 +398,15 @@ public class Gui {
 		 */
 
 		adventureButtonPanel = new JPanel(new GridLayout());
-		adventureButtonPanel.setBackground(Color.WHITE);
+		adventureButtonPanel.setOpaque(false);
 		adventureButtonPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
 
 		adventureBottomPanel = new JPanel(new GridLayout(1, 3));
 		adventureBottomPanel.setSize(new Dimension(DEFAUT_HEIGHT / 3, DEFAUT_WEIGHT));
-		adventureBottomPanel.setBackground(Color.WHITE);
-		adventureBottomPanel.setBorder(BorderFactory.createEtchedBorder());
+		adventureBottomPanel.setOpaque(false);
 
 		playerStatsTextArea = new JTextArea();
+		playerStatsTextArea.setOpaque(false);
 		playerStatsTextArea.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
 		playerStatsTextArea.setEditable(false);
 		playerStatsTextArea.setWrapStyleWord(true);
@@ -378,6 +414,7 @@ public class Gui {
 		playerStatsTextArea.setFont(statsFont);
 
 		mobStatsTextArea = new JTextArea();
+		mobStatsTextArea.setOpaque(false);
 		mobStatsTextArea.setEditable(false);
 		mobStatsTextArea.setWrapStyleWord(true);
 		mobStatsTextArea.setLineWrap(true);
@@ -387,6 +424,9 @@ public class Gui {
 		startAdventureButton.setPreferredSize(new Dimension(50, 70));
 		startAdventureButton.setFont(buttonFont);
 		startAdventureButton.addActionListener(adventureHandler);
+		startAdventureButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		startAdventureButton.setFocusPainted(false);
+		startAdventureButton.setContentAreaFilled(false);
 
 		/*
 		 * Lifebar Player Panel
@@ -395,15 +435,13 @@ public class Gui {
 		this.playerPanel = new JPanel();
 		playerPanel.setPreferredSize(new Dimension(DEFAUT_WEIGHT, 50));
 		playerPanel.setFont(subtitleFont);
-		playerPanel.setBackground(Color.WHITE);
+		playerPanel.setOpaque(false);
 
 		lifeBar = new JProgressBar(0, 100);
-		lifeBar.setBackground(Color.WHITE);
+		lifeBar.setOpaque(false);
 		lifeBar.setUI((ProgressBarUI) BasicProgressBarUI.createUI(lifeBar));
-		lifeBar.setBorder(BorderFactory.createEtchedBorder());
 		lifeBar.setPreferredSize(playerPanel.getPreferredSize());
 		lifeBar.setStringPainted(true);
-		lifeBar.setOpaque(false);
 		lifeBar.setFont(subtitleFont);
 
 		/*
@@ -411,16 +449,18 @@ public class Gui {
 		 */
 
 		adventureButtonPanel.add(startAdventureButton);
-
-		playerPanel.add(lifeBar, BorderLayout.CENTER);
-		mainTextPanel.add(narrationTextArea);
-		mainTextPanel.add(combatDescriptionScrollPane);
-		container.add(mainTextPanel, BorderLayout.CENTER);
-		container.add(playerPanel, BorderLayout.NORTH);
-		container.add(adventureBottomPanel, BorderLayout.SOUTH);
 		adventureBottomPanel.add(playerStatsTextArea);
 		adventureBottomPanel.add(adventureButtonPanel);
 		adventureBottomPanel.add(mobStatsTextArea);
+
+		playerPanel.add(lifeBar, BorderLayout.CENTER);
+
+		mainTextPanel.add(narrationTextArea);
+		mainTextPanel.add(combatDescriptionScrollPane);
+
+		container.add(mainTextPanel, BorderLayout.CENTER);
+		container.add(playerPanel, BorderLayout.NORTH);
+		container.add(adventureBottomPanel, BorderLayout.SOUTH);
 
 		/*
 		 * Funzioni
@@ -440,17 +480,17 @@ public class Gui {
 		partyTextAreas = new ArrayList<>();
 
 		partyPanel = new JPanel(new BorderLayout());
-		partyPanel.setBackground(Color.WHITE);
+		partyPanel.setOpaque(false);
 
 		partyWelcomePanel = new JPanel(new FlowLayout()); // TOP
-		partyWelcomePanel.setBackground(Color.WHITE);
+		partyWelcomePanel.setOpaque(false);
 		partyWelcomePanel.setBorder(BorderFactory.createEmptyBorder(100, 20, 50, 20));
 
 		partyListPanel = new JPanel(new GridLayout()); // MID
-		partyListPanel.setBackground(Color.WHITE);
+		partyListPanel.setOpaque(false);
 
 		partyButtonPanel = new JPanel(new GridLayout(0, 1)); // BOTTOM
-		partyButtonPanel.setBackground(Color.WHITE);
+		partyButtonPanel.setOpaque(false);
 
 		partyLabel = new JLabel("How many people in your D&D party?");
 		partyLabel.setFont(subtitleFont);
@@ -462,11 +502,17 @@ public class Gui {
 		backButton.setFont(buttonFont);
 		backButton.setPreferredSize(new Dimension(150, 60));
 		backButton.addActionListener(backHandler);
+		backButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		backButton.setFocusPainted(false);
+		backButton.setContentAreaFilled(false);
 
 		generateButton = new JButton("GENERATE A PARTY");
 		generateButton.setFont(buttonFont);
 		generateButton.setPreferredSize(new Dimension(150, 60));
 		generateButton.addActionListener(generatePartyHandler);
+		generateButton.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+		generateButton.setFocusPainted(false);
+		generateButton.setContentAreaFilled(false);
 
 		partyWelcomePanel.add(partyLabel);
 		partyWelcomePanel.add(numPlayersComboBox);
@@ -589,6 +635,7 @@ public class Gui {
 	}
 
 	public class CombatTimeHandler implements ActionListener {
+
 		public void actionPerformed(ActionEvent e) {
 			if (combatTypeWriteIndex < combatString.length()) {
 				combatTextArea.append(String.valueOf(combatString.charAt(combatTypeWriteIndex)));
@@ -600,6 +647,25 @@ public class Gui {
 
 	}
 
+	/*
+	 * ImagePanel Class
+	 */
+
+	public class ImagePanel extends JPanel {
+		private static final long serialVersionUID = 1L;
+		private Image backgroundImage;
+
+		public ImagePanel(Image backgroundImage) {
+			this.backgroundImage = backgroundImage;
+		}
+
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			if (backgroundImage != null) {
+				g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+			}
+		}
+	}
 	/*
 	 * Methods to update the GUI
 	 */
@@ -762,11 +828,12 @@ public class Gui {
 		for (int i = 0; i < partyMember; i++) {
 
 			JTextArea partyMemberTextArea = new JTextArea(new PartyPg().toString());
+			partyMemberTextArea.setOpaque(false);
 			partyMemberTextArea.setFont(defaultFont);
 			partyMemberTextArea.setLineWrap(true);
 			partyMemberTextArea.setWrapStyleWord(true);
 			partyMemberTextArea.setEditable(false);
-			partyMemberTextArea.setBorder(BorderFactory.createEtchedBorder());
+			partyMemberTextArea.setBorder(BorderFactory.createEmptyBorder(0, 40, 0, 0));
 			partyTextAreas.add(partyMemberTextArea);
 		}
 

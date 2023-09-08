@@ -100,7 +100,7 @@ public class Combat {
 					if (actualMob.get().isAlive()) {
 
 						System.out.println("\n" + actualMob.get().getName().get().toUpperCase() + " Attacks");
-						outputString.append("\n\n" + actualMob.get().getName().get().toUpperCase() + "\nAttacks with"
+						outputString.append("\n\n" + actualMob.get().getName().get().toUpperCase() + "\nAttacks with "
 								+ actualMob.get().getFightStyle());
 
 						actualMob.get().getFightStyle().useWeapon(mobCa);
