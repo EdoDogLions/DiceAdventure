@@ -1,6 +1,8 @@
 package dices;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * @author edoardodoglioni Dice class is a Random Integer generator between 1
@@ -20,6 +22,7 @@ public class Dice implements DiceInterface {
 	/*
 	 * this method generate a random Integer in a range
 	 */
+	@Override
 	public int roll() {
 		Random random = new Random();
 		return random.nextInt(faces - LOW) + LOW;
@@ -27,15 +30,15 @@ public class Dice implements DiceInterface {
 
 	/*
 	 * This method rolls the dice a determinated number of times
-	 * 
+	 *
 	 * @param times is the parameter who determinate how many times the dice will be
 	 * rolled
-	 * 
+	 *
 	 * @return the result of the sum
 	 */
 
 	public List<Integer> rollXtimes(Integer times) {
-		List<Integer> results = new ArrayList<Integer>();
+		List<Integer> results = new ArrayList<>();
 		for (int x = 0; x < times; x++) {
 
 			results.add(this.roll());
@@ -47,9 +50,9 @@ public class Dice implements DiceInterface {
 
 	/*
 	 * This method calculate the sum of more than a dice rolled
-	 * 
+	 *
 	 * @param a List of Integer
-	 * 
+	 *
 	 * @return the sum of the value in list
 	 */
 	public Integer sumDices(List<Integer> list) {
@@ -65,7 +68,7 @@ public class Dice implements DiceInterface {
 
 	/*
 	 * This method rolls two dices
-	 * 
+	 *
 	 * @return an Integer with the value of the greatest
 	 */
 	public Integer rollWithAdvantage() {
@@ -81,7 +84,7 @@ public class Dice implements DiceInterface {
 
 	/*
 	 * This method rolls two dices
-	 * 
+	 *
 	 * @return an Integer with the value of the least
 	 */
 
@@ -98,11 +101,12 @@ public class Dice implements DiceInterface {
 
 	/*
 	 * This method is useful to know what kind of dice are we rolling
-	 * 
+	 *
 	 * @return the number of faces of the dice
 	 */
 	public Integer getFaces() {
 
 		return this.faces;
 	}
+
 }

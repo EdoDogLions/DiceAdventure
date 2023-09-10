@@ -20,11 +20,15 @@ public class Player extends PlayableAbstract {
 
 	public void restoreHp() {
 
-		if ((int) super.getHealthPoints() + (RESTORE * this.maxHp) < super.getMaxHP()) {
+		if (super.getHealthPoints() + (RESTORE * this.maxHp) < super.getMaxHP()) {
 			super.setHealthPoints((int) (super.getHealthPoints() + (RESTORE * this.maxHp)));
 		} else {
 			super.setHealthPoints(super.getMaxHP());
 		}
+	}
+
+	public void restoreFullHp() {
+		super.setHealthPoints(maxHp);
 	}
 
 }

@@ -1,8 +1,14 @@
 package utilities;
 
 import java.util.ArrayList;
+
 import dices.Dice;
-import weapons.*;
+import weapons.Bow;
+import weapons.Dagger;
+import weapons.Hammer;
+import weapons.Longsword;
+import weapons.Sword;
+import weapons.WeaponInterface;
 
 /**
  * @author edoardodoglioni This class generate a Random Weapon
@@ -27,14 +33,14 @@ public class RandomWeaponGenerator {
 		this.dagger = new Dagger();
 		this.longsword = new Longsword();
 		this.hammer = new Hammer();
-		this.weaponArray = new ArrayList<WeaponInterface>();
+		this.weaponArray = new ArrayList<>();
 
 	}
 
 	/*
 	 * This method add all kind of weapons to an array and choose one of them
 	 * randomly
-	 * 
+	 *
 	 * @return an Object who implements WeaponInterface
 	 */
 

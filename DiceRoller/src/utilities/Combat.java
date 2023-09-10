@@ -3,7 +3,9 @@ package utilities;
 import java.util.Optional;
 
 import dices.Dice;
-import playable.*;
+import playable.Mob;
+import playable.MobFactory;
+import playable.Player;
 
 /**
  * @author edoardodoglioni The Combat class controls the entire flow of the
@@ -11,7 +13,7 @@ import playable.*;
  *         Mob and the coefficients of subsequent difficulties
  *
  */
-public class Combat {
+public class Combat implements CombatInterface{
 
 	private static final Integer START_CA = 10;
 	private static final Integer START_LIFE = 10;
@@ -50,6 +52,7 @@ public class Combat {
 	 * fight and if our player is still alive
 	 */
 
+	@Override
 	public void fight() {
 
 		this.outputString = new StringBuilder();
@@ -273,7 +276,7 @@ public class Combat {
 
 	/*
 	 * This method calculates the fight advantage/disadvantage
-	 * 
+	 *
 	 * @param mob is the actual mob we want to calculate the advantage/disadvantage
 	 */
 	private void randomAdvDSV(Mob mob) {

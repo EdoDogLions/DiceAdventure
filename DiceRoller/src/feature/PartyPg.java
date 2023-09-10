@@ -25,6 +25,7 @@ public class PartyPg {
 		return points;
 	}
 
+	@Override
 	public String toString() {
 		return this.pair + "\n\n" + this.points;
 	}

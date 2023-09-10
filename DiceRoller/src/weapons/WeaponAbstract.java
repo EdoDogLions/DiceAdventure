@@ -28,9 +28,10 @@ public abstract class WeaponAbstract implements WeaponInterface {
 
 	/*
 	 * This method roll a Dice who set the damage dealt by the weapon
-	 * 
+	 *
 	 * @return the field lastDmg where is tracked the damage dealt by the weapon
 	 */
+	@Override
 	public Integer rollDmg() {
 		this.lastDmg = this.diceDmg.roll();
 		return this.lastDmg;
@@ -38,10 +39,11 @@ public abstract class WeaponAbstract implements WeaponInterface {
 
 	/*
 	 * This method roll a Dice who set if the weapon hit his target
-	 * 
+	 *
 	 * @return the field lastHit where is tracked the last value of the dice to hit
 	 */
 
+	@Override
 	public Integer rollHit() {
 		this.lastHit = this.diceHit.roll();
 		return this.lastHit;
@@ -49,10 +51,11 @@ public abstract class WeaponAbstract implements WeaponInterface {
 
 	/*
 	 * This method roll more dices based on the value of the CRIT of the weapon
-	 * 
+	 *
 	 * @return the field lastDmg where is tracked the damage dealt by the weapon
 	 */
 
+	@Override
 	public Integer rollCrit() {
 
 		this.lastDmg = diceDmg.sumDices(diceDmg.rollXtimes(crit));
@@ -62,10 +65,11 @@ public abstract class WeaponAbstract implements WeaponInterface {
 
 	/*
 	 * This method roll dices with Advantage
-	 * 
+	 *
 	 * @return the field lastHit where is tracked the last value of the dice to hit
 	 */
 
+	@Override
 	public Integer rollAdv() {
 
 		this.lastHit = diceHit.rollWithAdvantage();
@@ -75,10 +79,11 @@ public abstract class WeaponAbstract implements WeaponInterface {
 
 	/*
 	 * This method roll dices with Disadvantage
-	 * 
+	 *
 	 * @return the field lastHit where is tracked the last value of the dice to hit
 	 */
 
+	@Override
 	public Integer rollDsv() {
 
 		this.lastHit = diceHit.rollWithDisvantage();
@@ -101,10 +106,12 @@ public abstract class WeaponAbstract implements WeaponInterface {
 		return this.diceDmg.getFaces();
 	}
 
+	@Override
 	public String getWeaponName() {
 		return this.weaponName;
 	}
 
+	@Override
 	public String toString() {
 		return "Weapon Name: " + this.weaponName + "\nWeapon Damage: " + this.getMaxDmg();
 

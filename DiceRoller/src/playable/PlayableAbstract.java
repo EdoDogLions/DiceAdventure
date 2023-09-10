@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import dices.Dice;
 import fightStyles.FightStyleInterface;
-import utilities.*;
+import utilities.RandomFightStyleGenerator;
 
 /**
  * @author edoardodoglioni This class represents everything who is playable in
@@ -100,6 +100,7 @@ public class PlayableAbstract implements PlayableInterface {
 
 	}
 
+	@Override
 	public boolean isAlive() {
 
 		if (this.healthPoints > DEATH) {
@@ -111,6 +112,7 @@ public class PlayableAbstract implements PlayableInterface {
 		}
 	}
 
+	@Override
 	public String toString() {
 
 		return this.getClass().getSimpleName().toUpperCase() + " STATS:" + "\nNAME: " + this.name.get() + "\nMAX HP: "

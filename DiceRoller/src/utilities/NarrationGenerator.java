@@ -27,8 +27,8 @@ public class NarrationGenerator {
 	public NarrationGenerator(Player player) {
 
 		this.fightDescription = new String();
-		this.fightPart1 = new ArrayList<String>();
-		this.fightPart2 = new ArrayList<String>();
+		this.fightPart1 = new ArrayList<>();
+		this.fightPart2 = new ArrayList<>();
 		this.player = player;
 
 	}
@@ -53,7 +53,7 @@ public class NarrationGenerator {
 	 * credibility I choose to split every narration in two part, one before the
 	 * fight and the other after the fight, to best describe what's happening to our
 	 * hero
-	 * 
+	 *
 	 * @param mob is the actual Mob our Player is fighting
 	 */
 
@@ -126,7 +126,7 @@ public class NarrationGenerator {
 		/*
 		 * INDEX 8
 		 */
-		fightPart1.add("In the Moonlit Gorge, " + player.getName().get() + "confronted with a" + mob.getName().get()
+		fightPart1.add("In the Moonlit Gorge, " + player.getName().get() + "confronted with a " + mob.getName().get()
 				+ ".  Using swift strikes of his " + player.getFightStyle()
 				+ ", he fended off their relentless attacks");
 		fightPart2.add(", with courage unshaken, he banished the enemy with a blinding flash of divine light");
@@ -144,9 +144,9 @@ public class NarrationGenerator {
 	/*
 	 * This method analyze the Player's status and decide what kind of narration
 	 * have to do
-	 * 
+	 *
 	 * @param numberOfNarrationsMade keep trace of the status of the story
-	 * 
+	 *
 	 * @return a String who concat two strings based on our Player health status
 	 */
 	private String concatFightString(Integer numberOfNarrationsMade) {
@@ -166,9 +166,9 @@ public class NarrationGenerator {
 
 	/*
 	 * This method generate the actual narration
-	 * 
+	 *
 	 * @param mob is the actual mob
-	 * 
+	 *
 	 * @return fightDescription who is a String used from GUI
 	 */
 

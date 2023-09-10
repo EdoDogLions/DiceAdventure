@@ -25,14 +25,14 @@ public class RandomFightStyleGenerator {
 
 		this.fightWithAWeapon = new FightWithAWeapon();
 		this.fightWithTwoWeapons = new FightWithTwoWeapons();
-		this.fightStyleArray = new ArrayList<FightStyleInterface>();
+		this.fightStyleArray = new ArrayList<>();
 
 	}
 
 	/*
 	 * This method generate a Random Fight Style adding it to an array of FightStyle
 	 * and choosing randomly which one to use
-	 * 
+	 *
 	 * @return an Object who implements a FightStyleInterface (It can be
 	 * FightWithAWeapon, or FightWithTwoWeapons)
 	 */

@@ -15,6 +15,7 @@ public class FightWithAWeapon extends FightStyleAbstract {
 
 	}
 
+	@Override
 	public String toString() {
 		return this.customWeapon.get(RIGHT_HAND).getWeaponName();
 	}

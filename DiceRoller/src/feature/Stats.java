@@ -1,7 +1,8 @@
 package feature;
 
-import dices.Dice;
 import java.util.List;
+
+import dices.Dice;
 
 /**
  * @author edoardodoglioni This class contains all the stats of a character
@@ -35,7 +36,7 @@ public class Stats {
 	 * This method calculate the stats of a character based on the rules of D&D
 	 * rolling 4 times a 6faced dice, removing the lowest and summing the other
 	 * three
-	 * 
+	 *
 	 * @return the value of the Sum of the dices
 	 */
 	private Integer calculateDice() {
@@ -50,7 +51,7 @@ public class Stats {
 	/*
 	 * This method calculates the value of the Modifier based on D&D Player's
 	 * Handbook Rules
-	 * 
+	 *
 	 * @return the value of the Modifier
 	 */
 	private Integer calculateMod(Integer value) {
@@ -82,6 +83,7 @@ public class Stats {
 		return charisma;
 	}
 
+	@Override
 	public String toString() {
 		return "STR: " + this.strenght + " [" + calculateMod(strenght) + "]" + "\nDEX: " + this.dexterity + " ["
 				+ calculateMod(dexterity) + "]" + "\nCOS: " + this.costitution + " [" + calculateMod(costitution) + "]"

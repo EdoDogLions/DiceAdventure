@@ -65,6 +65,7 @@ public class FightWithTwoWeapons extends FightStyleAbstract {
 		}
 	}
 
+	@Override
 	public String toString() {
 
 		return this.fightStyleName;

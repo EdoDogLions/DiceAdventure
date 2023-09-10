@@ -11,10 +11,23 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.Timer;
+import javax.swing.WindowConstants;
 import javax.swing.plaf.ProgressBarUI;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
@@ -27,13 +40,14 @@ import utilities.NarrationGenerator;
  * @author edoardodoglioni This is the GUI class who design and create the
  *         entire Graphic User Interface
  */
-public class Gui {
+public class View implements ViewInterface {
 
 	private static final Integer DEFAUT_WEIGHT = 900;
 	private static final Integer DEFAUT_HEIGHT = 600;
 	private static final Integer NARRATION_SPEED = 35;
 	private static final Integer COMBAT_SPEED = 20;
 	private static final Integer CREDIT_SPEED = 50;
+	private static final String PATH = "background.jpg";
 
 	private JFrame window;
 
@@ -79,6 +93,7 @@ public class Gui {
 	private BackMainMenu backHandler = new BackMainMenu();
 	private CreateAPartyHandler createAParty = new CreateAPartyHandler();
 	private GeneratePartyHandler generatePartyHandler = new GeneratePartyHandler();
+	private RestartGameHandler restartGameHandler = new RestartGameHandler();
 
 	/*
 	 * Object used to update the GUI
@@ -89,21 +104,51 @@ public class Gui {
 	private String creditString, narrationString, combatString;
 	private Integer[] numPlayerOptions = { 1, 2, 3, 4 };
 	private Integer partyMember = 0;
+	ImageIcon backgroundImageIcon;
+	ImagePanel imagePanel;
 
-	public Gui(Player player, Combat combat) {
+	public View(Player player) {
 
 		this.player = player;
-		this.combat = combat;
-		this.rng = new NarrationGenerator(player);
-		initializeGUI();
+		build();
+
+	}
+
+	public void build() {
+
+		initializeGUI(player);
+		/*
+		 * Main Widow, not resizable
+		 */
+		this.window = new JFrame();
+		window.setTitle("DiceAdventure");
+		window.setSize(DEFAUT_WEIGHT, DEFAUT_HEIGHT); // WxH
+		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		window.setResizable(false); // Layout non modificabile
+		setUpBackground(window);
+		// window.setContentPane(imagePanel);
+
+		/*
+		 * Container
+		 */
+		this.container = window.getContentPane();
+		container.setLayout(new BorderLayout(10, 10)); // This creates the BorderLayout, which manages the layout of
+
 		createMainMenu();
 
+		window.setVisible(true); // JFrame visibile
 	}
 
 	/*
 	 * This method initialize all the Panel of the GUI
 	 */
-	private void initializeGUI() {
+	private void initializeGUI(Player player) {
+
+		this.player = player;
+		this.player.restoreFullHp();
+		this.combat = new Combat(player);
+		this.rng = new NarrationGenerator(player);
+		this.isEndGame = false;
 
 		titlePanel = new JPanel();
 		startButtonPanel = new JPanel();
@@ -115,6 +160,22 @@ public class Gui {
 		gameModeTextPanel = new JPanel();
 		gameModeButtonPanel = new JPanel();
 		partyPanel = new JPanel();
+	}
+
+	private void setUpBackground(JFrame window) {
+
+		try {
+
+			ClassLoader classLoader = this.getClass().getClassLoader();
+			URL imageURL = classLoader.getResource(PATH);
+			backgroundImageIcon = new ImageIcon(imageURL);
+			imagePanel = new ImagePanel(backgroundImageIcon.getImage());
+			window.setContentPane(imagePanel);
+
+		} catch (Exception e) {
+			System.out.println("Image cannot be found");
+
+		}
 
 	}
 
@@ -139,32 +200,10 @@ public class Gui {
 	/*
 	 * This method creates the MainMenu
 	 */
+
 	public void createMainMenu() {
 
-		/*
-		 * Please update the path with backgrounds.jpg who is in the imgs folder into
-		 * bin
-		 */
-		ImageIcon backgroundImageIcon = new ImageIcon(
-				"/home/edoardodoglioni/Documenti/universita/done/programmazione_oggetti/progetto/DiceAdventure/DiceRoller/bin/imgs/background.jpg");
-
-		ImagePanel imagePanel = new ImagePanel(backgroundImageIcon.getImage());
-
-		/*
-		 * Main Widow, not resizable
-		 */
-		this.window = new JFrame();
-		window.setTitle("DiceAdventure");
-		window.setSize(DEFAUT_WEIGHT, DEFAUT_HEIGHT); // WxH
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setResizable(false); // Layout non modificabile
-		window.setContentPane(imagePanel);
-
-		/*
-		 * Container
-		 */
-		this.container = window.getContentPane();
-		container.setLayout(new BorderLayout(10, 10)); // This creates the BorderLayout, which manages the layout of
+		setInvisible();
 
 		/*
 		 * Title Panel
@@ -226,8 +265,6 @@ public class Gui {
 
 		container.add(titlePanel, BorderLayout.CENTER); // add TitlePanel to Container
 		container.add(startButtonPanel, BorderLayout.SOUTH);
-
-		window.setVisible(true); // JFrame visibile
 
 	}
 
@@ -295,6 +332,7 @@ public class Gui {
 	public void createGameModeScreen() {
 
 		setInvisible();
+		initializeGUI(player);
 		/*
 		 * TextArea
 		 */
@@ -358,6 +396,7 @@ public class Gui {
 	public void createAdventureScreen() {
 
 		setInvisible();
+
 		/*
 		 * TextArea first start
 		 */
@@ -553,8 +592,7 @@ public class Gui {
 		public void actionPerformed(ActionEvent event) {
 
 			setInvisible();
-			titlePanel.setVisible(true);
-			startButtonPanel.setVisible(true);
+			createMainMenu();
 
 		}
 	}
@@ -599,24 +637,22 @@ public class Gui {
 
 	}
 
-	public class CreditTimeHandler implements ActionListener {
-
-		public void actionPerformed(ActionEvent e) {
-			if (creditTypeWriteIndex < creditString.length()) {
-				creditTextArea.append(String.valueOf(creditString.charAt(creditTypeWriteIndex)));
-				creditTypeWriteIndex++;
-			} else {
-				creditTimer.stop();
-			}
-		}
-	}
-
 	public class GeneratePartyHandler implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
 			generatePlayers();
 		}
+	}
+
+	public class RestartGameHandler implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			
+			createMainMenu();
+
+		}
+
 	}
 
 	/*
@@ -645,6 +681,18 @@ public class Gui {
 			}
 		}
 
+	}
+
+	public class CreditTimeHandler implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			if (creditTypeWriteIndex < creditString.length()) {
+				creditTextArea.append(String.valueOf(creditString.charAt(creditTypeWriteIndex)));
+				creditTypeWriteIndex++;
+			} else {
+				creditTimer.stop();
+			}
+		}
 	}
 
 	/*
@@ -766,7 +814,7 @@ public class Gui {
 			}
 
 			isEndGame = true;
-			startAdventureButton.setText("The End");
+			startAdventureButton.setText("THE END");
 
 		} else {
 
@@ -797,8 +845,8 @@ public class Gui {
 
 			}
 
-			startAdventureButton.setText("QUIT");
-			startAdventureButton.addActionListener(quitHandler);
+			startAdventureButton.setText("MAIN MENU");
+			startAdventureButton.addActionListener(restartGameHandler);
 
 		}
 	}

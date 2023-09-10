@@ -8,7 +8,7 @@ import weapons.WeaponInterface;
 /**
  * @author edoardodoglioni This abstract class represents a fight style who can
  *         be of one or two weapons
- * 
+ *
  */
 public abstract class FightStyleAbstract implements FightStyleInterface {
 
@@ -38,7 +38,7 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 
 	/*
 	 * This method is used to try to hit with a weapons
-	 * 
+	 *
 	 * @param numberOfWeapon this is the number of weapon used
 	 */
 	private void hitWithAWeapon(Integer numberOfWeapon) {
@@ -58,10 +58,11 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 
 	/*
 	 * This method is used to use the weapons
-	 * 
+	 *
 	 * @param armorClass this is the value of the armor class of the enemy
 	 */
 
+	@Override
 	public void useWeapon(Integer armorClass) {
 
 		Integer totalDamage = INITIAL_DAMAGE;
@@ -93,6 +94,7 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 	 * This method is used to set the situation of Advantage
 	 */
 
+	@Override
 	public void setAdvantage() {
 		isInAdvantage = true;
 		isInDisadvantage = false;
@@ -103,6 +105,7 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 	 * This method is used to set the situation of Disadvantage
 	 */
 
+	@Override
 	public void setDisadvantage() {
 		isInAdvantage = false;
 		isInDisadvantage = true;
@@ -112,6 +115,7 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 	 * This method is used to reset the situation of Advantage/Disadvantage
 	 */
 
+	@Override
 	public void resetAdDisvantage() {
 		isInAdvantage = false;
 		isInDisadvantage = false;
@@ -119,7 +123,7 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 
 	/*
 	 * This method is used to set a customWeapon
-	 * 
+	 *
 	 * @param customWeapon is a Weapon
 	 */
 
@@ -131,10 +135,12 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 	 * Here we have our getters to have acces to the field of the class
 	 */
 
+	@Override
 	public Integer getLastRollHit() {
 		return lastRollHit;
 	}
 
+	@Override
 	public Integer getLastDmgHit() {
 		return lastDmgHit;
 	}
@@ -147,6 +153,7 @@ public abstract class FightStyleAbstract implements FightStyleInterface {
 		return isInDisadvantage;
 	}
 
+	@Override
 	public String toString() {
 		return this.fightStyleName;
 	}

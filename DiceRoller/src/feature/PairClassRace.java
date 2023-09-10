@@ -18,12 +18,12 @@ public class PairClassRace {
 
 	public PairClassRace() {
 
-		this.pair = new Pair<Class, Race>(randomClass(), randomRace());
+		this.pair = new Pair<>(randomClass(), randomRace());
 	}
 
 	/*
 	 * This method choose randomly a Class from the Class Enum
-	 * 
+	 *
 	 * @return an instance of Enum Class
 	 */
 	private static Class randomClass() {
@@ -34,7 +34,7 @@ public class PairClassRace {
 
 	/*
 	 * This method choose randomly a Race from the Race Enum
-	 * 
+	 *
 	 * @return an instance of Race Class
 	 */
 	private static Race randomRace() {
@@ -45,7 +45,7 @@ public class PairClassRace {
 
 	/*
 	 * This method return the pair of Class, Race
-	 * 
+	 *
 	 * @return pair
 	 */
 	public Pair<Class, Race> getPairClassRace() {
@@ -53,6 +53,7 @@ public class PairClassRace {
 		return this.pair;
 	}
 
+	@Override
 	public String toString() {
 		return "CLASS:\n" + this.pair.getFirst().getClassName() + "\n\nRACE:\n" + this.pair.getSecond().getRaceName();
 	}
